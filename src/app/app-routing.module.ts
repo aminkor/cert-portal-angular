@@ -5,13 +5,33 @@ import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
 import {AuthGuard} from './_helpers';
 import {HomeComponent} from './home/home.component';
+import {UserListComponent} from './admin/master-data/user-list/user-list.component';
+import {LoginLayoutComponent} from './layouts/login-layout/login-layout.component';
+import {MainLayoutComponent} from './layouts/main-layout/main-layout.component';
 
 
 const routes: Routes = [
-  { path: '', component: HomeComponent, canActivate: [AuthGuard] },
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent  },
 
+  // { path: 'login', component: LoginComponent },
+  // { path: 'register', component: RegisterComponent  },
+  // {
+  //   path: 'admin',
+  //   canActivate: [AuthGuard],
+  //   children: [
+  //     { path: 'user-list', component: UserListComponent },
+  //   ]
+  // },
+  {
+    path: 'login', component: LoginLayoutComponent, children: [
+      { path: '', component: LoginComponent },
+    ]
+  },
+  {
+    path: '', component: MainLayoutComponent,canActivate: [AuthGuard], children: [
+      { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
+      { path: 'admin/user-list', component: UserListComponent, canActivate: [AuthGuard] },
+    ]
+  },
 ];
 
 @NgModule({

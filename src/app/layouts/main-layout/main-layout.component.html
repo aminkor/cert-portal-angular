@@ -1,0 +1,68 @@
+<mat-sidenav-container class="sidenav-container" *ngIf="loggedIn === true">
+  <mat-sidenav class="sidenav" mode="side" opened>
+    <div class="title">
+      <picture>
+        <!-- <source srcset="../assets/images/petronas-reverse-linear-white.webp" type="image/webp"> -->
+        <!-- <source srcset="../assets/images/petronas-reverse-linear-white.png" type="image/png">  -->
+        <!--        <img src="../assets/images/skpp11-2.PNG" alt="PETRONAS" style="max-height: 64px;">-->
+      </picture>
+    </div>
+    <nav>
+      <div class="nav-wrapper">
+        <a href="#" routerLink="/" matRipple>
+          <mat-icon aria-hidden="false" aria-label="Scan">home</mat-icon>
+          <span>Home</span>
+        </a>
+
+        <!--        <a href="#" routerLink="/attendance" matRipple>-->
+        <!--          <mat-icon aria-hidden="false" aria-label="Attendance">supervised_user_circle</mat-icon>-->
+        <!--          <span>Attendance</span>-->
+        <!--        </a>-->
+
+        <!--        <a href="#" routerLink="/student" matRipple>-->
+        <!--          <mat-icon aria-hidden="false" aria-label="Attendance">supervised_user_circle</mat-icon>-->
+        <!--          <span>Students</span>-->
+        <!--        </a>-->
+
+        <!--        <a href="#" routerLink="/dashboard" matRipple>-->
+        <!--          <mat-icon aria-hidden="false" aria-label="Attendance">dashboard</mat-icon>-->
+        <!--          <span>Dashboard</span>-->
+        <!--        </a>-->
+      </div>
+      <div class="nav-wrapper">
+        <a href="#" routerLink="/admin/user-list" routerLinkActive="active" matRipple *ngIf="showChild">
+          <mat-icon aria-hidden="false" aria-label="User List">supervised_user_circle</mat-icon>
+          <span>User List</span>
+        </a>
+        <a routerLinkActive="active" matRipple (click)="toggleAdmin()" class="router-parent">
+          <mat-icon aria-hidden="false" aria-label="Settings">settings</mat-icon>
+          <span>Settings</span>
+        </a>
+      </div>
+
+    </nav>
+  </mat-sidenav>
+
+  <mat-sidenav-content role="main" class="main">
+    <mat-toolbar class="toolbar">
+      <span class="toolbar-title">Certificate Portal</span>
+      <div class="toolbar-right">
+        <!-- <a href="#" routerLink="/search" class="toolkit-wrapper icon" matRipple>
+          <mat-icon aria-hidden="false" aria-label="search icon" color="primary">search</mat-icon>
+        </a> -->
+        <div class="toolkit-wrapper text" [matMenuTriggerFor]="menu" #menuTrigger="matMenuTrigger"
+             (click)="menuTrigger.openMenu()" matRipple>
+          <div class="initial">{{ initials }}</div>
+          <mat-menu #menu="matMenu" [overlapTrigger]="false" class="account-menu">
+            <div class="name">{{ username }}</div>
+            <div class="mail">{{ usermail }}</div>
+            <div class="logout" (click)="logoutUser()">Logout</div>
+          </mat-menu>
+        </div>
+      </div>
+    </mat-toolbar>
+    <div class="wrapper">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

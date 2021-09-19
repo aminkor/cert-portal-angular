@@ -1,0 +1,182 @@
+@import "../../../assets/scss/breakpoints";
+
+// $primary: rgb(0, 161, 156);
+// $secondary: rgb(0, 143, 138);
+
+$primary: rgba(104, 70, 139, 0.9);
+$secondary: rgba(104, 70, 139, 1);
+
+// $secondary: rgba(103, 58, 183, 1);
+// $primary: rgba(103, 58, 183, 0.9);
+
+$mobileNavHeight: 65px;
+
+.sidenav-container {
+  height: 100%;
+  .sidenav {
+    width: 200px;
+    margin: 0 auto;
+    background-color: $primary;
+    text-align: center;
+    padding-bottom: 1.5em;
+    color: white;
+    font-weight: bold;
+    user-select: none;
+    @include for-tablet-below {
+      width: 100%;
+      padding: 0;
+      pointer-events: none;
+      background-color: transparent;
+    }
+    .title {
+      font-size: 1.3em;
+      margin-bottom: 2em;
+      height: 64px;
+      max-height: 64px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: $secondary;
+      pointer-events: none;
+      picture {
+        max-height: 64px;
+      }
+      @include for-tablet-below {
+        display: none;
+      }
+    }
+    nav {
+      display: flex;
+      flex-flow: column;
+      justify-content: space-between;
+      padding: 0 1em;
+      height: calc(100vh - 2em - 64px - 1.5em - 2em);
+      @include for-tablet-below {
+        flex-flow: row;
+        height: $mobileNavHeight;
+        position: sticky;
+        top: 100%;
+        background: $secondary;
+        pointer-events: all;
+        width: 100vw;
+        padding: 0;
+        z-index: 1;
+        .nav-wrapper {
+          &:first-child {
+            display: flex;
+            flex-flow: row;
+            width: 100%;
+            align-items: center;
+            justify-content: space-around;
+          }
+          &:last-child {
+            display: none;
+          }
+        }
+      }
+      a {
+        padding: 0.8em 0.8em;
+        font-size: 0.85em;
+        color: white;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        @include for-tablet-below {
+          flex-flow: column;
+          flex: 1;
+          &:nth-child(3) {
+            display: none;
+          }
+        }
+        &:hover,
+        &.active {
+          background: $secondary;
+        }
+        .mat-icon {
+          margin-right: 10px;
+          @include for-tablet-below {
+            margin-right: 0;
+          }
+        }
+        &.router-parent {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+  .main {
+    background-color: #f9f9f9;
+    overflow-x: hidden;
+    @include for-tablet-below {
+      margin-left: 0 !important;
+    }
+    .toolbar {
+      background-color: white;
+      color: #aaaaaa;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 99999;
+      border-bottom: 1px solid #eee;
+      .toolbar-title {
+        font-weight: bold;
+        color: $primary;
+      }
+      .toolbar-right {
+        display: flex;
+        .toolkit-wrapper {
+          background: #f2f2f2;
+          border-radius: 50%;
+          width: 2em;
+          height: 2em;
+          cursor: pointer;
+          user-select: none;
+          &:not(:last-child) {
+            margin-right: 0.5em;
+          }
+          &:hover {
+            background: #dddddd;
+          }
+          &.icon {
+            display: table;
+            text-align: center;
+            mat-icon {
+              vertical-align: middle;
+              color: rgba(103, 58, 183, 1);
+            }
+          }
+          &.text {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(103, 58, 183, 1);
+            .initial {
+              font-size: 0.75em;
+              color: white;
+            }
+          }
+        }
+      }
+    }
+    .wrapper {
+      padding: 1em 2em;
+      @include for-tablet-below {
+        padding: 1em;
+        padding-bottom: calc(1em + #{$mobileNavHeight});
+      }
+    }
+  }
+}
+
+.loading-profile {
+  width: 70%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  flex-flow: column;
+  margin: 0 auto;
+  user-select: none;
+  pointer-events: none;
+}

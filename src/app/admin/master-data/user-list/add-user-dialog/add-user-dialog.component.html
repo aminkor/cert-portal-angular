@@ -1,0 +1,54 @@
+<h1 mat-dialog-title>
+  {{ dialogTitle }}
+</h1>
+
+<div mat-dialog-content>
+
+
+  <mat-form-field class="field-full-width">
+    <mat-label>Title</mat-label>
+    <input matInput [(ngModel)]="title" />
+  </mat-form-field>
+
+  <mat-form-field class="field-full-width">
+    <mat-label>First Name</mat-label>
+    <input matInput [(ngModel)]="firstName" />
+  </mat-form-field>
+
+  <mat-form-field class="field-full-width">
+    <mat-label>Last Name</mat-label>
+    <input matInput [(ngModel)]="lastName" />
+  </mat-form-field>
+
+  <mat-form-field class="field-full-width">
+    <mat-label>Email </mat-label>
+    <input matInput [(ngModel)]="email"  />
+  </mat-form-field>
+
+  <mat-form-field class="field-full-width" *ngIf="data.actionType == 'create'">
+    <mat-label>Password </mat-label>
+    <input matInput type="password" [(ngModel)]="password"  />
+  </mat-form-field>
+
+  <mat-form-field class="field-full-width" *ngIf="data.actionType == 'create'">
+    <mat-label>Confirm Password </mat-label>
+    <input matInput type="password" [(ngModel)]="confirmPassword"  />
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="field-full-width">
+    <mat-label>User Role</mat-label>
+    <mat-select [(ngModel)]="userRole" name="adhocCategory">
+      <mat-option *ngFor="let role of userRoles" [value]="role">
+        {{role}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+</div>
+
+<div mat-dialog-actions>
+  <button mat-raised-button color="primary" (click)="onConfirm('submit')">{{ confirm }}</button>
+  <button mat-button (click)="onDismiss()">{{ dismiss }}</button>
+  <button *ngIf="data.actionType == 'edit'" mat-raised-button color="warn" (click)="onConfirm('delete')" >Delete User</button>
+
+</div>

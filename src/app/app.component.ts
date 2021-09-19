@@ -16,6 +16,7 @@ export class AppComponent {
   usermail: any;
   loggedIn = false;
   authenticatedUser: User;
+  showChild = false
 
    constructor(
      private route: ActivatedRoute,
@@ -26,8 +27,8 @@ export class AppComponent {
           if (usr) {
             this.loggedIn = true;
             this.authenticatedUser = usr;
-            this.initials = 'TI';
             this.username = this.authenticatedUser.firstName + this.authenticatedUser.lastName;
+            this.initials = this.getInitials(this.username);
             this.usermail = this.authenticatedUser.email;
           }
           else {
@@ -37,6 +38,18 @@ export class AppComponent {
       );
 
    }
+
+  getInitials(name) {
+    return name
+      .split(' ')
+      .slice(0, 2)
+      .map(char => char[0])
+      .join('')
+  }
+
+  toggleAdmin() {
+    this.showChild = !this.showChild
+  }
 
 
   logoutUser() {

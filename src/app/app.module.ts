@@ -28,6 +28,15 @@ import {ErrorInterceptor} from './_helpers';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
+import { UserListComponent } from './admin/master-data/user-list/user-list.component';
+import {AdminComponent} from './admin/admin.component';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatRippleModule} from '@angular/material/core';
+import {MatProgressSpinnerModule, MatSpinner} from '@angular/material/progress-spinner';
+import {MatDialog, MatDialogModule} from '@angular/material/dialog';
+import { AddUserDialogComponent } from './admin/master-data/user-list/add-user-dialog/add-user-dialog.component';
+import { LoginLayoutComponent } from './layouts/login-layout/login-layout.component';
+import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
 
 
 @NgModule({
@@ -35,7 +44,12 @@ import { HomeComponent } from './home/home.component';
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    HomeComponent
+    HomeComponent,
+    AdminComponent,
+    UserListComponent,
+    AddUserDialogComponent,
+    LoginLayoutComponent,
+    MainLayoutComponent
   ],
   imports: [
     BrowserModule,
@@ -60,11 +74,16 @@ import { HomeComponent } from './home/home.component';
     MatButtonToggleModule,
     MatAutocompleteModule,
     MatSelectModule,
-    MatTableModule
+    MatTableModule,
+    MatTabsModule,
+    MatRippleModule,
+    MatProgressSpinnerModule,
+    MatDialogModule
   ],
   providers: [
     HttpClient,
     DatePipe,
+    MatDialog,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
