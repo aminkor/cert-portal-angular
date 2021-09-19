@@ -27,9 +27,16 @@ const routes: Routes = [
     ]
   },
   {
+    path: 'register', component: LoginLayoutComponent, children: [
+      { path: '', component: RegisterComponent },
+    ]
+  },
+  {
     path: '', component: MainLayoutComponent,canActivate: [AuthGuard], children: [
       { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
       { path: 'admin/user-list', component: UserListComponent, canActivate: [AuthGuard] },
+      { path: '**', redirectTo: 'home' }
+
     ]
   },
 ];
