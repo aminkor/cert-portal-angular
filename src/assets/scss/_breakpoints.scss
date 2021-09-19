@@ -1,0 +1,65 @@
+@mixin for-mobile {
+	@media (max-width: 767px) {
+		@content;
+	}
+}
+
+@mixin for-tablet-up {
+	@media (min-width: 768px) {
+		@content;
+	}
+}
+
+@mixin for-tablet {
+	@media (min-width: 768px) and (max-width: 991px) {
+		@content;
+	}
+}
+
+@mixin for-tablet-below {
+	@media (max-width: 991px) {
+		@content;
+	}
+}
+
+@mixin for-computer-up {
+	@media (min-width: 992px) {
+		@content;
+	}
+}
+
+@mixin for-computer {
+	@media (min-width: 992px) and (max-width: 1200px) {
+		@content;
+	}
+}
+
+@mixin for-computer-below {
+	@media (max-width: 1200px) {
+		@content;
+	}
+}
+
+@mixin for-large-screen-up {
+	@media (min-width: 1201px) {
+		@content;
+	}
+}
+
+@mixin for-large-screen {
+	@media (min-width: 1201px) and (max-width: 1439px) {
+		@content;
+	}
+}
+
+@mixin for-large-screen-below {
+	@media (max-width: 1439px) {
+		@content;
+	}
+}
+
+@mixin for-widescreen {
+	@media (min-width: 1440px) {
+		@content;
+	}
+}
