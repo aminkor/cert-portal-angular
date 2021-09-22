@@ -29,13 +29,13 @@ export class AddUserDialogComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: AddUserDialogModel,
     private toastr: ToastrService,
   ) {
-    this.dialogTitle = data.dialogTitle
-    this.confirm = data.buttonConfirm
-    this.dismiss = data.buttonDismiss
-    this.title = data.item.title
-    this.firstName = data.item.firstName
-    this.lastName = data.item.lastName
-    this.email = data.item.email
+    this.dialogTitle = data.dialogTitle;
+    this.confirm = data.buttonConfirm;
+    this.dismiss = data.buttonDismiss;
+    this.title = data.item.title;
+    this.firstName = data.item.firstName;
+    this.lastName = data.item.lastName;
+    this.email = data.item.email;
     this.userId = data.item.id;
     this.userRole = data.item.userRole;
     if (this.data.actionType === 'create') {
@@ -89,18 +89,14 @@ export class AddUserDialogComponent implements OnInit {
         : warn('Please provide confirmPassword');
 
 
-
-    }
-    else if (actionType === 'delete') {
+    } else if (actionType === 'delete') {
       this.dialogRef.close({
         submit: false,
         actionType
-      })
-    }
-    else if (this.data.actionType === 'edit') {
+      });
+    } else if (this.data.actionType === 'edit') {
       submit();
     }
-
 
 
   }

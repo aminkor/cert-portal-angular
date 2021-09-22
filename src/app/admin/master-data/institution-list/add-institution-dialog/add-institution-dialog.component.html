@@ -1,0 +1,31 @@
+<h1 mat-dialog-title>
+  {{ dialogTitle }}
+</h1>
+
+<div mat-dialog-content>
+
+
+  <mat-form-field class="field-full-width">
+    <mat-label>Name</mat-label>
+    <input matInput [(ngModel)]="name" />
+  </mat-form-field>
+
+  <mat-form-field class="field-full-width">
+    <mat-label>Description</mat-label>
+    <input matInput [(ngModel)]="description" />
+  </mat-form-field>
+
+  <mat-form-field class="field-full-width">
+    <mat-label>Address</mat-label>
+    <textarea matInput [(ngModel)]="address" ></textarea>
+  </mat-form-field>
+
+
+</div>
+
+<div mat-dialog-actions>
+  <button mat-raised-button color="primary" (click)="onConfirm('submit')">{{ confirm }}</button>
+  <button mat-button (click)="onDismiss()">{{ dismiss }}</button>
+  <button *ngIf="data.actionType == 'edit'" mat-raised-button color="warn" (click)="onConfirm('delete')" >Delete Institution</button>
+
+</div>

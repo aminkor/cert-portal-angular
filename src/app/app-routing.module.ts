@@ -8,6 +8,7 @@ import {HomeComponent} from './home/home.component';
 import {UserListComponent} from './admin/master-data/user-list/user-list.component';
 import {LoginLayoutComponent} from './layouts/login-layout/login-layout.component';
 import {MainLayoutComponent} from './layouts/main-layout/main-layout.component';
+import {InstitutionListComponent} from './admin/master-data/institution-list/institution-list.component';
 
 
 const routes: Routes = [
@@ -35,6 +36,7 @@ const routes: Routes = [
     path: '', component: MainLayoutComponent,canActivate: [AuthGuard], children: [
       { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
       { path: 'admin/user-list', component: UserListComponent, canActivate: [AuthGuard] },
+      { path: 'admin/institution-list', component: InstitutionListComponent, canActivate: [AuthGuard] },
       { path: '**', redirectTo: 'home' }
 
     ]

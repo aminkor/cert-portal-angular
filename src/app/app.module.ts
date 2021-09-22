@@ -37,6 +37,9 @@ import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 import { AddUserDialogComponent } from './admin/master-data/user-list/add-user-dialog/add-user-dialog.component';
 import { LoginLayoutComponent } from './layouts/login-layout/login-layout.component';
 import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
+import { InstitutionListComponent } from './admin/master-data/institution-list/institution-list.component';
+// tslint:disable-next-line:max-line-length
+import { AddInstitutionDialogComponent } from './admin/master-data/institution-list/add-institution-dialog/add-institution-dialog.component';
 
 
 @NgModule({
@@ -49,7 +52,9 @@ import { MainLayoutComponent } from './layouts/main-layout/main-layout.component
     UserListComponent,
     AddUserDialogComponent,
     LoginLayoutComponent,
-    MainLayoutComponent
+    MainLayoutComponent,
+    InstitutionListComponent,
+    AddInstitutionDialogComponent
   ],
   imports: [
     BrowserModule,
