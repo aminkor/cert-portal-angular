@@ -40,7 +40,7 @@ export class InstitutionService {
   }
 
   delete(id: string) {
-    return this.http.delete(`${environment.apiUrl}/accounts/${id}`)
+    return this.http.delete(`${environment.apiUrl}/certificates/${id}`)
       .pipe(map(x => {
           return x;
       }));

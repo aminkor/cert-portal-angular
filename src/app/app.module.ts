@@ -40,6 +40,9 @@ import { MainLayoutComponent } from './layouts/main-layout/main-layout.component
 import { InstitutionListComponent } from './admin/master-data/institution-list/institution-list.component';
 // tslint:disable-next-line:max-line-length
 import { AddInstitutionDialogComponent } from './admin/master-data/institution-list/add-institution-dialog/add-institution-dialog.component';
+import { CertificateListComponent } from './admin/master-data/certificate-list/certificate-list.component';
+// tslint:disable-next-line:max-line-length
+import { AddCertificateDialogComponent } from './admin/master-data/certificate-list/add-certificate-dialog/add-certificate-dialog.component';
 
 
 @NgModule({
@@ -54,7 +57,9 @@ import { AddInstitutionDialogComponent } from './admin/master-data/institution-l
     LoginLayoutComponent,
     MainLayoutComponent,
     InstitutionListComponent,
-    AddInstitutionDialogComponent
+    AddInstitutionDialogComponent,
+    CertificateListComponent,
+    AddCertificateDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -83,7 +88,7 @@ import { AddInstitutionDialogComponent } from './admin/master-data/institution-l
     MatTabsModule,
     MatRippleModule,
     MatProgressSpinnerModule,
-    MatDialogModule
+    MatDialogModule,
   ],
   providers: [
     HttpClient,

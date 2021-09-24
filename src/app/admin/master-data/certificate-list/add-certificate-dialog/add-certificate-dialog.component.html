@@ -1,0 +1,48 @@
+<h1 mat-dialog-title>
+  {{ dialogTitle }}
+</h1>
+
+<div mat-dialog-content>
+
+
+  <mat-form-field class="field-full-width">
+    <mat-label>Name</mat-label>
+    <input matInput [(ngModel)]="name" />
+  </mat-form-field>
+
+  <mat-form-field class="field-full-width">
+    <mat-label>Description</mat-label>
+    <input matInput [(ngModel)]="description" />
+  </mat-form-field>
+
+  <div *ngIf="data.actionType == 'edit' || data.actionType == 'delete'" class="field-full-width">
+    <mat-label>Uploaded File Url</mat-label>
+    <div>
+      {{data.item.url}}
+    </div>
+  </div>
+
+  <div class="field-full-width">
+    <mat-label *ngIf="data.actionType != 'edit' && data.actionType != 'delete'">Select File</mat-label>
+    <mat-label *ngIf="data.actionType == 'edit' || data.actionType == 'delete'">Update File</mat-label>
+  </div>
+
+  <div class="field-full-width">
+
+  </div>
+
+  <div class="field-full-width">
+    <input type="file" (change)="selectFile($event)" />
+  </div>
+
+
+
+
+</div>
+
+<div mat-dialog-actions>
+  <button mat-raised-button color="primary" (click)="onConfirm('submit')">{{ confirm }}</button>
+  <button mat-button (click)="onDismiss()">{{ dismiss }}</button>
+  <button *ngIf="data.actionType == 'edit'" mat-raised-button color="warn" (click)="onConfirm('delete')" >Delete Certificate</button>
+
+</div>
