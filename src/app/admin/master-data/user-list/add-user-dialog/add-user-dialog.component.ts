@@ -21,7 +21,8 @@ export class AddUserDialogComponent implements OnInit {
   userRole: string;
   userRoles = [
     'User',
-    'Admin'
+    'Admin',
+    'Instructor'
   ];
 
   constructor(

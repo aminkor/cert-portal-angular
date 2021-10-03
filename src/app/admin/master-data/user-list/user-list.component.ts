@@ -6,6 +6,8 @@ import {ToastrService} from 'ngx-toastr';
 import {MatPaginator} from '@angular/material/paginator';
 import {AccountService} from '../../../_services';
 import {AddUserDialogComponent, AddUserDialogModel} from './add-user-dialog/add-user-dialog.component';
+import {User} from '../../../_models';
+import {EditInstitutionsDialogComponent, EditInstitutionsDialogModel} from './edit-institutions-dialog/edit-institutions-dialog.component';
 
 @Component({
   selector: 'app-user-list',
@@ -178,5 +180,16 @@ export class UserListComponent implements OnInit {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value
     this.dataSource.filter = filterValue.trim().toLowerCase()
+  }
+
+  editInstitutions(account: User) {
+    const title = `Edit Institutions`,
+      dialogData = new EditInstitutionsDialogModel(title,account,),
+      dialogRef = this.dialog.open(EditInstitutionsDialogComponent, {
+        maxWidth: '500px',
+        width: '500px',
+        data: dialogData,
+        disableClose: true
+      })
   }
 }

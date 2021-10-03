@@ -45,6 +45,11 @@ import { CertificateListComponent } from './admin/master-data/certificate-list/c
 import { AddCertificateDialogComponent } from './admin/master-data/certificate-list/add-certificate-dialog/add-certificate-dialog.component';
 import { StudentsListComponent } from './admin/master-data/students-list/students-list.component';
 import { AddStudentDialogComponent } from './admin/master-data/students-list/add-student-dialog/add-student-dialog.component';
+import {
+  AssignInstitutionsDialogComponent,
+  EditInstitutionsDialogComponent
+} from './admin/master-data/user-list/edit-institutions-dialog/edit-institutions-dialog.component';
+import {MatChipsModule} from '@angular/material/chips';
 
 
 @NgModule({
@@ -63,7 +68,9 @@ import { AddStudentDialogComponent } from './admin/master-data/students-list/add
     CertificateListComponent,
     AddCertificateDialogComponent,
     StudentsListComponent,
-    AddStudentDialogComponent
+    AddStudentDialogComponent,
+    EditInstitutionsDialogComponent,
+    AssignInstitutionsDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -93,6 +100,7 @@ import { AddStudentDialogComponent } from './admin/master-data/students-list/add
     MatRippleModule,
     MatProgressSpinnerModule,
     MatDialogModule,
+    MatChipsModule
   ],
   providers: [
     HttpClient,

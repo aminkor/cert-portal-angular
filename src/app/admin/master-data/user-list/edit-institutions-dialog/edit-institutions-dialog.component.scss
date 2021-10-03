@@ -1,0 +1,26 @@
+table {
+  width: 100%;
+}
+
+.info-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2em 1em;
+  user-select: none;
+  .loading-message {
+    padding-left: 2em;
+  }
+}
+
+.table-filter {
+  font-size: 14px;
+  width: 100%;
+}
+
+.table-container {
+  margin-bottom: 2em;
+}
+
+
+
