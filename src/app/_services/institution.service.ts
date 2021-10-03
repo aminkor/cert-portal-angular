@@ -5,6 +5,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import {environment} from 'src/environments/environment';
 import {Institution} from '../_models';
+import {Student} from '../_models/student';
 
 
 
@@ -44,5 +45,27 @@ export class InstitutionService {
       .pipe(map(x => {
           return x;
       }));
+  }
+
+  // institution students methods
+
+  getStudents(institution: Institution) {
+    return this.http.get<Student []>(`${environment.apiUrl}/institutions/students/${institution.id}`);
+  }
+
+  addStudent(student: Student, institution: Institution) {
+    return this.http.post(`${environment.apiUrl}/institutions/students`, {
+      studentId: student.id,
+      institutionId: institution.id
+    });
+
+  }
+
+  removeStudent(student: Student, institution: Institution) {
+    return this.http.post(`${environment.apiUrl}/institutions/students/remove`,{
+      studentId: student.id,
+      institutionId: institution.id
+    });
+
   }
 }

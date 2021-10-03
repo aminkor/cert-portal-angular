@@ -43,6 +43,8 @@ import { AddInstitutionDialogComponent } from './admin/master-data/institution-l
 import { CertificateListComponent } from './admin/master-data/certificate-list/certificate-list.component';
 // tslint:disable-next-line:max-line-length
 import { AddCertificateDialogComponent } from './admin/master-data/certificate-list/add-certificate-dialog/add-certificate-dialog.component';
+import { StudentsListComponent } from './admin/master-data/students-list/students-list.component';
+import { AddStudentDialogComponent } from './admin/master-data/students-list/add-student-dialog/add-student-dialog.component';
 
 
 @NgModule({
@@ -59,7 +61,9 @@ import { AddCertificateDialogComponent } from './admin/master-data/certificate-l
     InstitutionListComponent,
     AddInstitutionDialogComponent,
     CertificateListComponent,
-    AddCertificateDialogComponent
+    AddCertificateDialogComponent,
+    StudentsListComponent,
+    AddStudentDialogComponent
   ],
   imports: [
     BrowserModule,

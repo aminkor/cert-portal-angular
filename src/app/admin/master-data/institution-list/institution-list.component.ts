@@ -6,6 +6,7 @@ import {MatDialog} from '@angular/material/dialog';
 import {ToastrService} from 'ngx-toastr';
 import {AddInstitutionDialogComponent, AddInstitutionDialogModel} from './add-institution-dialog/add-institution-dialog.component';
 import {InstitutionService} from '../../../_services';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-institution-list',
@@ -20,6 +21,9 @@ export class InstitutionListComponent implements OnInit {
     { def: 'address', hide: false },
     { def: 'created', hide: false },
     { def: 'updated', hide: false },
+    { def: 'students', hide: false },
+    { def: 'studentsCounts', hide: false },
+
   ]
 
   isLoadingResults = false
@@ -33,6 +37,7 @@ export class InstitutionListComponent implements OnInit {
     private institutionService: InstitutionService,
     private dialog: MatDialog,
     private toastr: ToastrService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -173,4 +178,9 @@ export class InstitutionListComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase()
   }
 
+  viewStudents(institutionId) {
+    // navigate to students list
+    this.router.navigate(['/admin/students-list'], { queryParams: { institutionId }});
+
+  }
 }

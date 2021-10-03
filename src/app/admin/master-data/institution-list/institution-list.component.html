@@ -53,6 +53,20 @@
       </td>
     </ng-container>
 
+    <ng-container matColumnDef="students">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Students</th>
+      <td mat-cell *matCellDef="let element" >
+        <span style="cursor: pointer; color: blue" (click)="viewStudents(element.id)">
+          View Students
+        </span>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="studentsCounts">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>No. of Students</th>
+      <td mat-cell *matCellDef="let element" (click)="editRow(element)">{{ element.studentsCounts }}</td>
+    </ng-container>
+
 
 
 

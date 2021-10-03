@@ -5,6 +5,8 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { User } from '../_models/user';
 import {environment} from 'src/environments/environment';
+import {Institution} from '../_models';
+import {Student} from '../_models/student';
 
 
 
@@ -83,5 +85,9 @@ export class AccountService {
         }
         return x;
       }));
+  }
+
+  searchStudents(institution: Institution) {
+    return this.http.get<Student []>(`${environment.apiUrl}/accounts/students/${institution.id}`);
   }
 }
