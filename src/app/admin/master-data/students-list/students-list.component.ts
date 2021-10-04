@@ -14,6 +14,7 @@ import {MatDialog} from '@angular/material/dialog';
 import {error} from 'protractor';
 import {Student} from '../../../_models/student';
 import {ToastrService} from 'ngx-toastr';
+import { Location } from '@angular/common'
 
 @Component({
   selector: 'app-students-list',
@@ -45,7 +46,8 @@ export class StudentsListComponent implements OnInit {
     private router: Router,
     private institutionService: InstitutionService,
     private dialog: MatDialog,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private location: Location
   ) { }
 
   ngOnInit(): void {
@@ -57,7 +59,7 @@ export class StudentsListComponent implements OnInit {
   }
 
   close() {
-    this.router.navigate(['admin/institution-list'])
+    this.location.back();
   }
 
   private getInstitution(paramsInstitutionId) {

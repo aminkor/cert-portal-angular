@@ -34,6 +34,10 @@ export class CertificateService {
     return this.http.get<Certificate[]>(`${environment.apiUrl}/certificates`);
   }
 
+  getUserCertificates(userId) {
+    return this.http.get<Certificate[]>(`${environment.apiUrl}/certificates/users/${userId}`);
+  }
+
   getById(id: string) {
     return this.http.get<Certificate>(`${environment.apiUrl}/certificates/${id}`);
   }

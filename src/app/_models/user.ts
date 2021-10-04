@@ -6,4 +6,5 @@ export class User {
   lastName: string;
   jwtToken: string;
   email: any;
+  userRole;
 }

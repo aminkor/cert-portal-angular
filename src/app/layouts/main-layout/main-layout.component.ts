@@ -17,7 +17,7 @@ export class MainLayoutComponent {
   loggedIn = false;
   authenticatedUser: User;
   showChild = false
-
+  userRole: any;
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -30,6 +30,7 @@ export class MainLayoutComponent {
           this.username = this.authenticatedUser.firstName + this.authenticatedUser.lastName;
           this.initials = this.getInitials(this.username);
           this.usermail = this.authenticatedUser.email;
+          this.userRole = this.authenticatedUser.userRole;
         }
         else {
           this.loggedIn = false

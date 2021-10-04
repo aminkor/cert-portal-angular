@@ -7,6 +7,7 @@ import {ToastrService} from 'ngx-toastr';
 import {CertificateService} from '../../../_services/certificate.service';
 import {AddCertificateDialogComponent, AddCertificateDialogModel} from './add-certificate-dialog/add-certificate-dialog.component';
 import {DomSanitizer} from '@angular/platform-browser';
+import {AccountService} from '../../../_services';
 
 
 @Component({
@@ -39,7 +40,6 @@ export class CertificateListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.onSearch()
 
   }
 

@@ -50,6 +50,8 @@ import {
   EditInstitutionsDialogComponent
 } from './admin/master-data/user-list/edit-institutions-dialog/edit-institutions-dialog.component';
 import {MatChipsModule} from '@angular/material/chips';
+import { UserCertificatesComponent } from './user-certificates/user-certificates.component';
+import { InstructorInstitutionsComponent } from './instructor-institutions/instructor-institutions.component';
 
 
 @NgModule({
@@ -70,7 +72,9 @@ import {MatChipsModule} from '@angular/material/chips';
     StudentsListComponent,
     AddStudentDialogComponent,
     EditInstitutionsDialogComponent,
-    AssignInstitutionsDialogComponent
+    AssignInstitutionsDialogComponent,
+    UserCertificatesComponent,
+    InstructorInstitutionsComponent
   ],
   imports: [
     BrowserModule,

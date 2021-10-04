@@ -180,7 +180,7 @@ export class InstitutionListComponent implements OnInit {
 
   viewStudents(institutionId) {
     // navigate to students list
-    this.router.navigate(['/admin/students-list'], { queryParams: { institutionId }});
+    this.router.navigate(['students-list'], { queryParams: { institutionId }});
 
   }
 }

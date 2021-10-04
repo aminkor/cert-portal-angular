@@ -14,10 +14,15 @@
           <span>Home</span>
         </a>
 
-        <!--        <a href="#" routerLink="/attendance" matRipple>-->
-        <!--          <mat-icon aria-hidden="false" aria-label="Attendance">supervised_user_circle</mat-icon>-->
-        <!--          <span>Attendance</span>-->
-        <!--        </a>-->
+        <a href="#" routerLink="/user-certificates" routerLinkActive="active" matRipple *ngIf="authenticatedUser.userRole === 'User'">
+          <mat-icon aria-hidden="false" aria-label="Certificate List">insert_drive_file</mat-icon>
+          <span>Certificate List</span>
+        </a>
+
+        <a href="#" routerLink="/instructor-institutions" routerLinkActive="active" matRipple *ngIf="authenticatedUser.userRole === 'Instructor'">
+          <mat-icon aria-hidden="false" aria-label="User List">school</mat-icon>
+          <span>Institution List</span>
+        </a>
 
         <!--        <a href="#" routerLink="/student" matRipple>-->
         <!--          <mat-icon aria-hidden="false" aria-label="Attendance">supervised_user_circle</mat-icon>-->
@@ -29,7 +34,7 @@
         <!--          <span>Dashboard</span>-->
         <!--        </a>-->
       </div>
-      <div class="nav-wrapper">
+      <div class="nav-wrapper" *ngIf="userRole === 'Admin'">
         <a href="#" routerLink="/admin/user-list" routerLinkActive="active" matRipple *ngIf="showChild">
           <mat-icon aria-hidden="false" aria-label="User List">supervised_user_circle</mat-icon>
           <span>User List</span>

@@ -11,6 +11,8 @@ import {MainLayoutComponent} from './layouts/main-layout/main-layout.component';
 import {InstitutionListComponent} from './admin/master-data/institution-list/institution-list.component';
 import {CertificateListComponent} from './admin/master-data/certificate-list/certificate-list.component';
 import {StudentsListComponent} from './admin/master-data/students-list/students-list.component';
+import {UserCertificatesComponent} from './user-certificates/user-certificates.component';
+import {InstructorInstitutionsComponent} from './instructor-institutions/instructor-institutions.component';
 
 
 const routes: Routes = [
@@ -40,7 +42,10 @@ const routes: Routes = [
       { path: 'admin/user-list', component: UserListComponent, canActivate: [AuthGuard] },
       { path: 'admin/institution-list', component: InstitutionListComponent, canActivate: [AuthGuard] },
       { path: 'admin/certificate-list', component: CertificateListComponent, canActivate: [AuthGuard] },
-      { path: 'admin/students-list', component: StudentsListComponent, canActivate: [AuthGuard] },
+      { path: 'students-list', component: StudentsListComponent, canActivate: [AuthGuard] },
+      { path: 'user-certificates', component: UserCertificatesComponent, canActivate: [AuthGuard] },
+      { path: 'instructor-institutions', component: InstructorInstitutionsComponent, canActivate: [AuthGuard] },
+
       { path: '**', redirectTo: 'home' }
 
     ]

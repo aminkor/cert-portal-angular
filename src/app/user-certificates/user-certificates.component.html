@@ -1,11 +1,6 @@
 <div>Manage Certificates</div>
 <br /><br />
 
-<button mat-raised-button color="primary" (click)="addNewCertificate()">
-  <mat-icon aria-hidden="false" aria-label="Add new user">add</mat-icon>
-  Add
-</button>
-<br /><br />
 
 <mat-form-field class="table-filter">
   <mat-label>Filter</mat-label>
@@ -33,7 +28,7 @@
     <ng-container matColumnDef="url">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Url</th>
       <td mat-cell *matCellDef="let element" >
-         <a (click)="goToLink(element.url)">
+        <a (click)="goToLink(element.url)">
            <span style="cursor: pointer;color: blue">
              {{ element.url }}
            </span>

@@ -29,6 +29,10 @@ export class InstitutionService {
     return this.http.get<Institution[]>(`${environment.apiUrl}/institutions`);
   }
 
+  getInstructorInstitutions(userId) {
+    return this.http.get<Institution[]>(`${environment.apiUrl}/institutions/instructors/${userId}`);
+  }
+
   getById(id: string) {
     return this.http.get<Institution>(`${environment.apiUrl}/institutions/${id}`);
   }
