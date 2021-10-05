@@ -52,6 +52,8 @@ import {
 import {MatChipsModule} from '@angular/material/chips';
 import { UserCertificatesComponent } from './user-certificates/user-certificates.component';
 import { InstructorInstitutionsComponent } from './instructor-institutions/instructor-institutions.component';
+import { AssignCertInstitutionComponent } from './assign-cert-institution/assign-cert-institution.component';
+import { AssignCertStudentComponent } from './assign-cert-student/assign-cert-student.component';
 
 
 @NgModule({
@@ -74,7 +76,9 @@ import { InstructorInstitutionsComponent } from './instructor-institutions/instr
     EditInstitutionsDialogComponent,
     AssignInstitutionsDialogComponent,
     UserCertificatesComponent,
-    InstructorInstitutionsComponent
+    InstructorInstitutionsComponent,
+    AssignCertInstitutionComponent,
+    AssignCertStudentComponent
   ],
   imports: [
     BrowserModule,

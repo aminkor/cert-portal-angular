@@ -29,13 +29,12 @@
     <ng-container matColumnDef="status">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
       <td mat-cell *matCellDef="let element" >
-        <span *ngIf="element.status == 'Added'">
-          Added
+        <span *ngIf="element.certificateStatus == 'Assigned'">
+          Assigned
         </span>
-        <span *ngIf="element.status == 'Available'" style="cursor: pointer; color: blue" (click)="addStudentToInstitution(element)">
-          Add student
+        <span *ngIf="element.certificateStatus == 'Available'" style="cursor: pointer; color: blue" (click)="assignStudentToCertificate(element)">
+          Assign student
         </span>
-
       </td>
     </ng-container>
 
@@ -59,6 +58,6 @@
   ></mat-paginator>
 </div>
 
-  <div mat-dialog-actions>
-    <button mat-raised-button color="primary" (click)="onDismiss()">Done</button>
-  </div>
+<div mat-dialog-actions>
+  <button mat-raised-button color="primary" (click)="onDismiss()">Done</button>
+</div>

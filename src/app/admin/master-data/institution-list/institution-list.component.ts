@@ -19,11 +19,12 @@ export class InstitutionListComponent implements OnInit {
     { def: 'name', hide: false },
     { def: 'description', hide: false },
     { def: 'address', hide: false },
-    { def: 'created', hide: false },
-    { def: 'updated', hide: false },
     { def: 'students', hide: false },
     { def: 'studentsCounts', hide: false },
-
+    { def: 'certificates', hide: false },
+    { def: 'certificatesCounts', hide: false },
+    { def: 'created', hide: false },
+    { def: 'updated', hide: false },
   ]
 
   isLoadingResults = false
@@ -33,6 +34,7 @@ export class InstitutionListComponent implements OnInit {
   dataSource: MatTableDataSource<any>
   @ViewChild(MatPaginator) paginator: MatPaginator
   @ViewChild(MatSort) sort: MatSort
+  pageTitle: any = 'Manage Institution';
   constructor(
     private institutionService: InstitutionService,
     private dialog: MatDialog,
@@ -181,6 +183,12 @@ export class InstitutionListComponent implements OnInit {
   viewStudents(institutionId) {
     // navigate to students list
     this.router.navigate(['students-list'], { queryParams: { institutionId }});
+
+  }
+
+  viewCertificates(institutionId) {
+    // navigate to students list
+    this.router.navigate(['admin/certificate-list'], { queryParams: { institutionId, byInstitution: true }});
 
   }
 }

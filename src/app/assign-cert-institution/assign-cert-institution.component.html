@@ -1,0 +1,21 @@
+<h1 mat-dialog-title>
+  {{ pageTitle }}
+</h1>
+
+<div mat-dialog-content>
+  <mat-form-field appearance="fill" class="field-full-width">
+    <mat-label>Select Institution</mat-label>
+    <mat-select [(ngModel)]="institutionId" name="adhocCategory">
+      <mat-option *ngFor="let institution of institutionsList" [value]="institution.id">
+        {{institution.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+
+<div mat-dialog-actions>
+  <button mat-raised-button color="primary" (click)="onConfirm('assign')">{{ confirm }}</button>
+  <button mat-button (click)="onDismiss()">{{ dismiss }}</button>
+  <button *ngIf="data.actionType == 'edit'" mat-raised-button color="warn" (click)="onConfirm('delete')" >Delete Certificate</button>
+
+</div>

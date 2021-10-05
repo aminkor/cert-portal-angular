@@ -1,22 +1,23 @@
 import {Component, Inject, OnInit, ViewChild} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
-import {ToastrService} from 'ngx-toastr';
-import {Institution} from '../../../../_models';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
-import {AccountService, InstitutionService} from '../../../../_services';
-import {Student} from '../../../../_models/student';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+import {ToastrService} from 'ngx-toastr';
+import {AccountService, InstitutionService} from '../_services';
+import {Certificate, Institution, Student} from '../_models';
+import {CertificateService} from '../_services/certificate.service';
 
 @Component({
-  selector: 'app-add-student-dialog',
-  templateUrl: './add-student-dialog.component.html',
-  styleUrls: ['./add-student-dialog.component.scss']
+  selector: 'app-assign-cert-student',
+  templateUrl: './assign-cert-student.component.html',
+  styleUrls: ['./assign-cert-student.component.scss']
 })
-export class AddStudentDialogComponent implements OnInit {
+export class AssignCertStudentComponent implements OnInit {
   dialogTitle: string;
   confirm: string;
   dismiss: string;
+  selectedCertificate;
   selectedInstitution;
   columnDefinitions = [
     { def: 'id', hide: false },
@@ -34,14 +35,17 @@ export class AddStudentDialogComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator
   @ViewChild(MatSort) sort: MatSort
   constructor(
-    public dialogRef: MatDialogRef<AddStudentDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: AddStudentDialogModel,
+    public dialogRef: MatDialogRef<AssignCertStudentComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: AssignCertStudentModel,
     private toastr: ToastrService,
     private accountService: AccountService,
-    private institutionService: InstitutionService
+    private institutionService: InstitutionService,
+    private certificateService: CertificateService
 
   ) {
-    this.selectedInstitution = data.selectedInstitution;
+    this.selectedCertificate = data.selectedCertificate;
+    this.selectedInstitution = new Institution();
+    this.selectedInstitution.id = this.selectedCertificate.institutionId;
   }
 
   ngOnInit(): void {
@@ -61,7 +65,7 @@ export class AddStudentDialogComponent implements OnInit {
     this.isLoadingResults = true
     this.noResult = false
 
-    this.accountService.searchStudents(this.selectedInstitution).subscribe(
+    this.accountService.searchStudents(this.selectedInstitution,this.selectedCertificate).subscribe(
       data => {
         this.dataSource = new MatTableDataSource(data)
         this.dataSource.paginator = this.paginator
@@ -88,10 +92,10 @@ export class AddStudentDialogComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase()
   }
 
-  addStudentToInstitution(element: Student) {
-    this.institutionService.addStudent(element, this.selectedInstitution).subscribe(
+  assignStudentToCertificate(element: Student) {
+    this.certificateService.update(this.selectedCertificate.id, {accountId: element.id},null).subscribe(
       (data) => {
-        this.toastr.success('Success', 'Student Added');
+        this.toastr.success('Success', 'Student Assigned');
         this.onSearch();
       },
       (err) => {
@@ -103,16 +107,33 @@ export class AddStudentDialogComponent implements OnInit {
       }
     );
   }
+  unassignStudentFromCertificate() {
+    this.certificateService.update(this.selectedCertificate.id, {accountId: 0},null).subscribe(
+      (data) => {
+        this.toastr.success('Success', 'Student Unassigned');
+        this.onSearch();
+      },
+      (err) => {
+        this.toastr.error('Error', err);
+
+      },
+      () => {
+
+      }
+    );
+  }
+
 }
 
-export class AddStudentDialogModel {
+export class AssignCertStudentModel {
   constructor(
     public dialogTitle: string,
     public item: any = [],
     public actionType: string = 'create',
     public buttonConfirm: string = 'Save',
     public buttonDismiss: string = 'Cancel',
-    public selectedInstitution: Institution = null
+    public selectedCertificate: Certificate = null
+
   ) {
   }
 }

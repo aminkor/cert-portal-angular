@@ -1,7 +1,9 @@
 export class Certificate {
-  id: string;
+  id: number;
   name: string;
   description: string;
   url: string;
-
+  institutionId;
+  assignedTo;
+  accountId;
 }

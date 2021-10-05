@@ -20,7 +20,8 @@ export class AddCertificateDialogComponent implements OnInit {
   progress = 0;
   message = '';
   fileInfos?: Observable<any>;
-
+  byInstitution;
+  selectedInstitution;
   constructor(
     public dialogRef: MatDialogRef<AddCertificateDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: AddCertificateDialogModel,
@@ -31,6 +32,8 @@ export class AddCertificateDialogComponent implements OnInit {
     this.dismiss = data.buttonDismiss;
     this.name = data.item.name;
     this.description = data.item.description;
+    this.byInstitution = data.item.byInstitution;
+    this.selectedInstitution = data.item.selectedInstitution;
   }
 
   ngOnInit(): void {
@@ -44,6 +47,10 @@ export class AddCertificateDialogComponent implements OnInit {
         this.currentFile = file;
       }
     }
+    let institutionId;
+    if (this.byInstitution) {
+      institutionId = this.selectedInstitution.id;
+    }
     const submit = () => {
 
       this.dialogRef.close({
@@ -51,6 +58,7 @@ export class AddCertificateDialogComponent implements OnInit {
         name: this.name,
         description: this.description,
         file: this.currentFile,
+        institutionId
 
       });
 
