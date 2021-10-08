@@ -13,6 +13,9 @@ import {CertificateListComponent} from './admin/master-data/certificate-list/cer
 import {StudentsListComponent} from './admin/master-data/students-list/students-list.component';
 import {UserCertificatesComponent} from './user-certificates/user-certificates.component';
 import {InstructorInstitutionsComponent} from './instructor-institutions/instructor-institutions.component';
+import {InstructorStudentsComponent} from './instructor-students/instructor-students.component';
+import {InstructorCertificatesComponent} from './instructor-certificates/instructor-certificates.component';
+import {UserProfileComponent} from './user-profile/user-profile.component';
 
 
 const routes: Routes = [
@@ -45,7 +48,9 @@ const routes: Routes = [
       { path: 'students-list', component: StudentsListComponent, canActivate: [AuthGuard] },
       { path: 'user-certificates', component: UserCertificatesComponent, canActivate: [AuthGuard] },
       { path: 'instructor-institutions', component: InstructorInstitutionsComponent, canActivate: [AuthGuard] },
-
+      { path: 'instructor-students', component: InstructorStudentsComponent, canActivate: [AuthGuard] },
+      { path: 'instructor-certificates', component: InstructorCertificatesComponent, canActivate: [AuthGuard] },
+      { path: 'user-profile', component: UserProfileComponent, canActivate: [AuthGuard] },
       { path: '**', redirectTo: 'home' }
 
     ]

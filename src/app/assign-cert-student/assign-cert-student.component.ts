@@ -30,7 +30,7 @@ export class AssignCertStudentComponent implements OnInit {
   isLoadingResults = false
   noResult = false
   pageSize = 100
-
+  actionType = '';
   dataSource: MatTableDataSource<any>
   @ViewChild(MatPaginator) paginator: MatPaginator
   @ViewChild(MatSort) sort: MatSort
@@ -46,6 +46,7 @@ export class AssignCertStudentComponent implements OnInit {
     this.selectedCertificate = data.selectedCertificate;
     this.selectedInstitution = new Institution();
     this.selectedInstitution.id = this.selectedCertificate.institutionId;
+    this.actionType = data.actionType;
   }
 
   ngOnInit(): void {
@@ -93,7 +94,7 @@ export class AssignCertStudentComponent implements OnInit {
   }
 
   assignStudentToCertificate(element: Student) {
-    this.certificateService.update(this.selectedCertificate.id, {accountId: element.id},null).subscribe(
+    this.certificateService.update(this.selectedCertificate.id, {accountId: element.id, actionType: this.actionType},null).subscribe(
       (data) => {
         this.toastr.success('Success', 'Student Assigned');
         this.onSearch();
@@ -107,21 +108,7 @@ export class AssignCertStudentComponent implements OnInit {
       }
     );
   }
-  unassignStudentFromCertificate() {
-    this.certificateService.update(this.selectedCertificate.id, {accountId: 0},null).subscribe(
-      (data) => {
-        this.toastr.success('Success', 'Student Unassigned');
-        this.onSearch();
-      },
-      (err) => {
-        this.toastr.error('Error', err);
 
-      },
-      () => {
-
-      }
-    );
-  }
 
 }
 

@@ -35,11 +35,20 @@
     <input matInput type="password" [(ngModel)]="confirmPassword"  />
   </mat-form-field>
 
-  <mat-form-field appearance="fill" class="field-full-width">
+  <mat-form-field appearance="fill" class="field-full-width" *ngIf="origin !== 'user-profile'">
     <mat-label>User Role</mat-label>
     <mat-select [(ngModel)]="userRole" name="adhocCategory">
       <mat-option *ngFor="let role of userRoles" [value]="role">
         {{role}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="field-full-width" *ngIf="isRequireInstitutionId && origin !== 'user-profile'">
+    <mat-label>Select Institution</mat-label>
+    <mat-select [(ngModel)]="institutionId" name="adhocCategory">
+      <mat-option *ngFor="let institution of institutionsList" [value]="institution.id">
+        {{institution.name}}
       </mat-option>
     </mat-select>
   </mat-form-field>

@@ -37,6 +37,13 @@ export class AccountService {
       }));
   }
 
+  updateUser(user: User){
+    user.jwtToken = this.userSubject.value.jwtToken;
+    localStorage.setItem('user', JSON.stringify(user));
+    this.userSubject.next(user);
+    return user;
+  }
+
   logout() {
     // remove user from local storage and set current user to null
     localStorage.removeItem('user');
@@ -103,5 +110,9 @@ export class AccountService {
   updateRoleInstitutions(payload) {
     return this.http.put(`${environment.apiUrl}/accounts/roles/institutions`, payload);
 
+  }
+
+  getInstructorStudents(instructorId)  {
+    return this.http.get<Student []>(`${environment.apiUrl}/accounts/instructors/${instructorId}`);
   }
 }

@@ -2,6 +2,7 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {ToastrService} from 'ngx-toastr';
 import {Observable} from 'rxjs';
+import {AccountService, InstitutionService} from '../../../../_services';
 
 @Component({
   selector: 'app-add-certificate-dialog',
@@ -22,10 +23,19 @@ export class AddCertificateDialogComponent implements OnInit {
   fileInfos?: Observable<any>;
   byInstitution;
   selectedInstitution;
+  authenticatedUser;
+  isRequireInstitutionId = false;
+  institutionId: any;
+  institutionsList;
+
   constructor(
     public dialogRef: MatDialogRef<AddCertificateDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: AddCertificateDialogModel,
     private toastr: ToastrService,
+    private accountService: AccountService,
+    private institutionService: InstitutionService
+
+
   ) {
     this.dialogTitle = data.dialogTitle;
     this.confirm = data.buttonConfirm;
@@ -34,9 +44,41 @@ export class AddCertificateDialogComponent implements OnInit {
     this.description = data.item.description;
     this.byInstitution = data.item.byInstitution;
     this.selectedInstitution = data.item.selectedInstitution;
+
+    this.accountService.user.subscribe(
+      (usr) => {
+        if (usr) {
+          this.authenticatedUser = usr;
+          if (this.authenticatedUser.userRole === 'Instructor' && this.selectedInstitution == null) {
+            this.isRequireInstitutionId = true;
+            this.initInstitutions();
+
+          }
+
+        }
+        else {
+
+        }
+      }
+    );
   }
 
   ngOnInit(): void {
+
+  }
+
+  initInstitutions() {
+    this.institutionService.getInstructorInstitutions(this.authenticatedUser.id).subscribe(
+      (data) => {
+        this.institutionsList = data;
+      },
+      (err) => {
+        console.log(err);
+      },
+      () => {
+
+      }
+    );
   }
 
   onConfirm(actionType): void {
@@ -50,6 +92,9 @@ export class AddCertificateDialogComponent implements OnInit {
     let institutionId;
     if (this.byInstitution) {
       institutionId = this.selectedInstitution.id;
+    }
+    else if (this.isRequireInstitutionId) {
+      institutionId = this.institutionId
     }
     const submit = () => {
 
@@ -74,17 +119,33 @@ export class AddCertificateDialogComponent implements OnInit {
 
     if (this.data.actionType === 'create') {
 
-      this.name
-        ? submit()
-        : warn('Please provide name');
+      if (this.isRequireInstitutionId === false) {
+        this.name
+          ? submit()
+          : warn('Please provide name');
+      }
+      else {
+
+        this.name
+        ? this.institutionId
+          ? submit()
+          : warn('Please provide institution id')
+          : warn('Please provide name')
+
+      }
+
+
 
 
     } else if (actionType === 'delete') {
+
       this.dialogRef.close({
         submit: false,
         actionType
       });
+
     } else if (this.data.actionType === 'edit') {
+
       submit();
     }
 

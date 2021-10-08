@@ -2,27 +2,27 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
+import {Certificate, Institution} from '../_models';
+import {CertificateService} from '../_services/certificate.service';
 import {MatDialog} from '@angular/material/dialog';
 import {ToastrService} from 'ngx-toastr';
-import {CertificateService} from '../../../_services/certificate.service';
-import {AddCertificateDialogComponent, AddCertificateDialogModel} from './add-certificate-dialog/add-certificate-dialog.component';
 import {DomSanitizer} from '@angular/platform-browser';
-import {AccountService, InstitutionService} from '../../../_services';
 import {ActivatedRoute, Router} from '@angular/router';
-import {Certificate, Institution} from '../../../_models';
+import {AccountService, InstitutionService} from '../_services';
+import {Location} from '@angular/common';
 import {
-  AssignCertInstitutionComponent,
-  AssignCertInstitutionModel
-} from '../../../assign-cert-institution/assign-cert-institution.component';
-import {AssignCertStudentComponent, AssignCertStudentModel} from '../../../assign-cert-student/assign-cert-student.component';
-import { Location } from '@angular/common'
+  AddCertificateDialogComponent,
+  AddCertificateDialogModel
+} from '../admin/master-data/certificate-list/add-certificate-dialog/add-certificate-dialog.component';
+import {AssignCertInstitutionComponent, AssignCertInstitutionModel} from '../assign-cert-institution/assign-cert-institution.component';
+import {AssignCertStudentComponent, AssignCertStudentModel} from '../assign-cert-student/assign-cert-student.component';
 
 @Component({
-  selector: 'app-certificate-list',
-  templateUrl: './certificate-list.component.html',
-  styleUrls: ['./certificate-list.component.scss']
+  selector: 'app-instructor-certificates',
+  templateUrl: './instructor-certificates.component.html',
+  styleUrls: ['./instructor-certificates.component.scss']
 })
-export class CertificateListComponent implements OnInit {
+export class InstructorCertificatesComponent implements OnInit {
   columnDefinitions = [
     { def: 'id', hide: false },
     { def: 'name', hide: false },
@@ -91,36 +91,19 @@ export class CertificateListComponent implements OnInit {
     this.isLoadingResults = true
     this.noResult = false
 
-    if (byInstitution === false) {
-      this.certificateService.getAll().subscribe(
-        data => {
-          this.dataSource = new MatTableDataSource(data)
-          this.dataSource.paginator = this.paginator
-          this.dataSource.sort = this.sort
-          this.isLoadingResults = false
-          this.noResult = data.length > 0 ? false : true
-        },
-        error => {
-          this.noResult = true
-          console.log(error)
-        }
-      )
-    }
-    else {
-      this.certificateService.getAllByInstitution(this.selectedInstitution).subscribe(
-        data => {
-          this.dataSource = new MatTableDataSource(data)
-          this.dataSource.paginator = this.paginator
-          this.dataSource.sort = this.sort
-          this.isLoadingResults = false
-          this.noResult = data.length > 0 ? false : true
-        },
-        error => {
-          this.noResult = true
-          console.log(error)
-        }
-      )
-    }
+    this.certificateService.getInstructorCertificates(this.authenticatedUser.id).subscribe(
+      data => {
+        this.dataSource = new MatTableDataSource(data)
+        this.dataSource.paginator = this.paginator
+        this.dataSource.sort = this.sort
+        this.isLoadingResults = false
+        this.noResult = data.length > 0 ? false : true
+      },
+      error => {
+        this.noResult = true
+        console.log(error)
+      }
+    )
 
   }
 

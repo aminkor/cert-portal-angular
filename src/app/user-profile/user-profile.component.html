@@ -1,0 +1,21 @@
+<div class="main-div">
+  <mat-card class="card">
+    <mat-card-header>
+      <div mat-card-avatar>
+        <div class="toolkit-wrapper text"  matRipple>
+          <div class="initial">{{ initials }}</div>
+        </div>      </div>
+      <mat-card-title>{{authenticatedUser.firstName + ' ' + authenticatedUser.lastName}}</mat-card-title>
+      <mat-card-subtitle>{{authenticatedUser.email}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <p>Email: {{authenticatedUser.email}}</p>
+      <p>First Name: {{authenticatedUser.firstName}}</p>
+      <p>Last Name: {{authenticatedUser.lastName}}</p>
+      <p>Role: {{authenticatedUser.userRole}}</p>
+    </mat-card-content>
+    <button mat-raised-button color="primary" (click)="editUser()">
+      Update
+    </button>
+  </mat-card>
+</div>

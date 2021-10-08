@@ -54,6 +54,9 @@ import { UserCertificatesComponent } from './user-certificates/user-certificates
 import { InstructorInstitutionsComponent } from './instructor-institutions/instructor-institutions.component';
 import { AssignCertInstitutionComponent } from './assign-cert-institution/assign-cert-institution.component';
 import { AssignCertStudentComponent } from './assign-cert-student/assign-cert-student.component';
+import { InstructorStudentsComponent } from './instructor-students/instructor-students.component';
+import { InstructorCertificatesComponent } from './instructor-certificates/instructor-certificates.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 
 @NgModule({
@@ -78,7 +81,10 @@ import { AssignCertStudentComponent } from './assign-cert-student/assign-cert-st
     UserCertificatesComponent,
     InstructorInstitutionsComponent,
     AssignCertInstitutionComponent,
-    AssignCertStudentComponent
+    AssignCertStudentComponent,
+    InstructorStudentsComponent,
+    InstructorCertificatesComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,

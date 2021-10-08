@@ -13,6 +13,10 @@
           <mat-icon aria-hidden="false" aria-label="Scan">home</mat-icon>
           <span>Home</span>
         </a>
+        <a href="#" routerLink="/user-profile" routerLinkActive="active" matRipple>
+          <mat-icon aria-hidden="false" aria-label="Certificate List">person</mat-icon>
+          <span>Profile</span>
+        </a>
 
         <a href="#" routerLink="/user-certificates" routerLinkActive="active" matRipple *ngIf="authenticatedUser.userRole === 'User'">
           <mat-icon aria-hidden="false" aria-label="Certificate List">insert_drive_file</mat-icon>
@@ -22,6 +26,16 @@
         <a href="#" routerLink="/instructor-institutions" routerLinkActive="active" matRipple *ngIf="authenticatedUser.userRole === 'Instructor'">
           <mat-icon aria-hidden="false" aria-label="User List">school</mat-icon>
           <span>Institution List</span>
+        </a>
+
+        <a href="#" routerLink="/instructor-certificates" routerLinkActive="active" matRipple *ngIf="authenticatedUser.userRole === 'Instructor'">
+          <mat-icon aria-hidden="false" aria-label="User List">insert_drive_file</mat-icon>
+          <span>Certificate List</span>
+        </a>
+
+        <a href="#" routerLink="/instructor-students" routerLinkActive="active" matRipple *ngIf="authenticatedUser.userRole === 'Instructor'">
+          <mat-icon aria-hidden="false" aria-label="User List">supervised_user_circle</mat-icon>
+          <span>Student List</span>
         </a>
 
         <!--        <a href="#" routerLink="/student" matRipple>-->

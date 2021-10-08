@@ -21,12 +21,3 @@ table {
 .table-container {
   margin-bottom: 2em;
 }
-.title {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  text-transform: capitalize;
-  .mat-icon {
-    cursor: pointer;
-  }
-}

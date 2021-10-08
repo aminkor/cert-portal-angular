@@ -2,29 +2,32 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
+import {AccountService} from '../_services';
 import {MatDialog} from '@angular/material/dialog';
 import {ToastrService} from 'ngx-toastr';
-import {AddInstitutionDialogComponent, AddInstitutionDialogModel} from './add-institution-dialog/add-institution-dialog.component';
-import {InstitutionService} from '../../../_services';
-import {Router} from '@angular/router';
+import {AddUserDialogComponent, AddUserDialogModel} from '../admin/master-data/user-list/add-user-dialog/add-user-dialog.component';
+import {User} from '../_models';
+import {
+  EditInstitutionsDialogComponent,
+  EditInstitutionsDialogModel
+} from '../admin/master-data/user-list/edit-institutions-dialog/edit-institutions-dialog.component';
 
 @Component({
-  selector: 'app-institution-list',
-  templateUrl: './institution-list.component.html',
-  styleUrls: ['./institution-list.component.scss']
+  selector: 'app-instructor-students',
+  templateUrl: './instructor-students.component.html',
+  styleUrls: ['./instructor-students.component.scss']
 })
-export class InstitutionListComponent implements OnInit {
+export class InstructorStudentsComponent implements OnInit {
   columnDefinitions = [
     { def: 'id', hide: false },
-    { def: 'name', hide: false },
-    { def: 'description', hide: false },
-    { def: 'address', hide: false },
-    { def: 'students', hide: false },
-    { def: 'studentsCounts', hide: false },
-    { def: 'certificates', hide: false },
-    { def: 'certificatesCounts', hide: false },
+    { def: 'firstName', hide: false },
+    { def: 'lastName', hide: false },
+    { def: 'email', hide: false },
+    { def: 'userRole', hide: false },
+    { def: 'isVerified', hide: false },
     { def: 'created', hide: false },
     { def: 'updated', hide: false },
+    { def: 'registeredTo', hide: false}
   ]
 
   isLoadingResults = false
@@ -34,17 +37,29 @@ export class InstitutionListComponent implements OnInit {
   dataSource: MatTableDataSource<any>
   @ViewChild(MatPaginator) paginator: MatPaginator
   @ViewChild(MatSort) sort: MatSort
-  pageTitle: any = 'Manage Institution';
+  loggedIn = false;
+  authenticatedUser;
   constructor(
-    private institutionService: InstitutionService,
+    private accountService: AccountService,
     private dialog: MatDialog,
     private toastr: ToastrService,
-    private router: Router
-  ) { }
+  ) {
+    this.accountService.user.subscribe(
+      (usr) => {
+        if (usr) {
+          this.loggedIn = true;
+          this.authenticatedUser = usr;
+          this.onSearch()
+
+        }
+        else {
+          this.loggedIn = false
+        }
+      }
+    );
+  }
 
   ngOnInit(): void {
-    this.onSearch()
-
   }
 
   getDisplayedColumns(): string[] {
@@ -55,7 +70,7 @@ export class InstitutionListComponent implements OnInit {
     this.isLoadingResults = true
     this.noResult = false
 
-    this.institutionService.getAll().subscribe(
+    this.accountService.getInstructorStudents(this.authenticatedUser.id).subscribe(
       data => {
         this.dataSource = new MatTableDataSource(data)
         this.dataSource.paginator = this.paginator
@@ -75,10 +90,11 @@ export class InstitutionListComponent implements OnInit {
     this.getUserMasterData()
   }
 
-  addNewInstitution() {
-    const title = `Add Institution`,
-      dialogData = new AddInstitutionDialogModel(title),
-      dialogRef = this.dialog.open(AddInstitutionDialogComponent, {
+
+  addNewUser() {
+    const title = `Add User`,
+      dialogData = new AddUserDialogModel(title),
+      dialogRef = this.dialog.open(AddUserDialogComponent, {
         maxWidth: '500px',
         width: '500px',
         data: dialogData,
@@ -91,9 +107,9 @@ export class InstitutionListComponent implements OnInit {
         // TODO will change roles to actual array of roles id
         // dialogResult.roles = []
 
-        this.institutionService.create(dialogResult).subscribe(
+        this.accountService.create(dialogResult).subscribe(
           data => {
-            this.toastr.success('Institution added', '', {
+            this.toastr.success('User added', '', {
               closeButton: true,
               progressBar: true
             })
@@ -118,9 +134,9 @@ export class InstitutionListComponent implements OnInit {
   }
 
   editRow(item) {
-    const title = `Edit Institution`,
-      dialogData = new AddInstitutionDialogModel(title, item, 'edit'),
-      dialogRef = this.dialog.open(AddInstitutionDialogComponent, {
+    const title = `Edit User`,
+      dialogData = new AddUserDialogModel(title, item, 'edit'),
+      dialogRef = this.dialog.open(AddUserDialogComponent, {
         maxWidth: '500px',
         width: '500px',
         data: dialogData,
@@ -132,9 +148,9 @@ export class InstitutionListComponent implements OnInit {
         delete dialogResult.submit
 
 
-        this.institutionService.update(item.id, dialogResult).subscribe(
+        this.accountService.update(item.id, dialogResult).subscribe(
           data => {
-            this.toastr.success('Institution updated', '', {
+            this.toastr.success('User updated', '', {
               closeButton: true,
               progressBar: true
             })
@@ -155,10 +171,10 @@ export class InstitutionListComponent implements OnInit {
         )
       }
       else if (dialogResult.actionType === 'delete') {
-        this.institutionService.delete(item.id).subscribe(
+        this.accountService.delete(item.id).subscribe(
           data => {
             this.onSearch()
-            this.toastr.success('Institution deleted', '', {
+            this.toastr.success('User deleted', '', {
               closeButton: true,
               progressBar: true
             })
@@ -175,20 +191,21 @@ export class InstitutionListComponent implements OnInit {
     })
   }
 
+
+
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value
     this.dataSource.filter = filterValue.trim().toLowerCase()
   }
 
-  viewStudents(institutionId) {
-    // navigate to students list
-    this.router.navigate(['students-list'], { queryParams: { institutionId }});
-
-  }
-
-  viewCertificates(institutionId) {
-    // navigate to certificates list
-    this.router.navigate(['admin/certificate-list'], { queryParams: { institutionId, byInstitution: true }});
-
+  editInstitutions(account: User) {
+    const title = `Edit Institutions`,
+      dialogData = new EditInstitutionsDialogModel(title,account,),
+      dialogRef = this.dialog.open(EditInstitutionsDialogComponent, {
+        maxWidth: '500px',
+        width: '500px',
+        data: dialogData,
+        disableClose: true
+      })
   }
 }

@@ -71,6 +71,10 @@ export class CertificateService {
     return this.http.get<Certificate[]>(`${environment.apiUrl}/certificates/users/${userId}`);
   }
 
+  getInstructorCertificates(instructorId) {
+    return this.http.get<Certificate[]>(`${environment.apiUrl}/certificates/instructors/${instructorId}`);
+  }
+
   getById(id: string) {
     return this.http.get<Certificate>(`${environment.apiUrl}/certificates/${id}`);
   }
@@ -111,6 +115,11 @@ export class CertificateService {
     }
     else {
       formData.append('accountId', params.accountId)
+
+    }
+
+    if (params.actionType !== undefined) {
+      formData.append('actionType', params.actionType)
 
     }
 

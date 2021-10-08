@@ -22,10 +22,12 @@ export class InstructorInstitutionsComponent implements OnInit {
     { def: 'name', hide: false },
     { def: 'description', hide: false },
     { def: 'address', hide: false },
-    { def: 'created', hide: false },
-    { def: 'updated', hide: false },
     { def: 'students', hide: false },
     { def: 'studentsCounts', hide: false },
+    { def: 'certificates', hide: false },
+    { def: 'certificatesCounts', hide: false },
+    { def: 'created', hide: false },
+    { def: 'updated', hide: false },
 
   ]
 
@@ -109,6 +111,11 @@ export class InstructorInstitutionsComponent implements OnInit {
     // navigate to students list
     this.router.navigate(['students-list'], { queryParams: { institutionId }});
 
+  }
+
+  viewCertificates(institutionId) {
+    // navigate to certificates list
+    this.router.navigate(['admin/certificate-list'], { queryParams: { institutionId, byInstitution: true }});
   }
 }
 

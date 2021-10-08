@@ -15,6 +15,15 @@
     <input matInput [(ngModel)]="description" />
   </mat-form-field>
 
+  <mat-form-field appearance="fill" class="field-full-width" *ngIf="isRequireInstitutionId">
+    <mat-label>Select Institution</mat-label>
+    <mat-select [(ngModel)]="institutionId" name="adhocCategory">
+      <mat-option *ngFor="let institution of institutionsList" [value]="institution.id">
+        {{institution.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
   <div *ngIf="data.actionType == 'edit' || data.actionType == 'delete'" class="field-full-width">
     <mat-label>Uploaded File Url</mat-label>
     <div>
