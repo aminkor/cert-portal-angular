@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {User} from '../_models';
 import {AccountService} from '../_services';
 import {AddUserDialogComponent, AddUserDialogModel} from '../admin/master-data/user-list/add-user-dialog/add-user-dialog.component';

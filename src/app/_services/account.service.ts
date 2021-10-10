@@ -37,7 +37,7 @@ export class AccountService {
       }));
   }
 
-  updateUser(user: User){
+  updateUser(user: any){
     user.jwtToken = this.userSubject.value.jwtToken;
     localStorage.setItem('user', JSON.stringify(user));
     this.userSubject.next(user);
