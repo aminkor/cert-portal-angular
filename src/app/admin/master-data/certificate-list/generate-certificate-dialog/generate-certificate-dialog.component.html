@@ -1,0 +1,72 @@
+<h1 mat-dialog-title>
+  {{ dialogTitle }}
+</h1>
+
+<div mat-dialog-content>
+  <mat-form-field appearance="fill" class="field-full-width">
+    <mat-label>Select Template</mat-label>
+    <mat-select [(ngModel)]="selectedTemplate" name="adhocCategory">
+      <mat-option *ngFor="let template of certificateTemplates" [value]="template">
+        {{template.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div>
+    <img class="thumb" *ngIf="selectedTemplate" [src]="selectedTemplate.thumbnail" />
+
+  </div>
+
+
+  <div>
+    <label id="example-radio-group-label">Select assignment</label>
+
+  </div>
+  <mat-radio-group
+    aria-labelledby="example-radio-group-label"
+    class="example-radio-group"
+    [(ngModel)]="selectedAssignment">
+    <mat-radio-button class="example-radio-button" *ngFor="let choice of assignmentChoices" [value]="choice">
+      {{choice}}
+    </mat-radio-button>
+  </mat-radio-group>
+
+
+  <mat-form-field appearance="fill" class="field-full-width" *ngIf="selectedAssignment == 'By Institution'">
+    <mat-label>Select Institution</mat-label>
+    <mat-select [(ngModel)]="institutionId" name="adhocCategory">
+      <mat-option *ngFor="let institution of institutionsList" [value]="institution.id">
+        {{institution.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field class="field-full-width" *ngIf="selectedTemplate && selectedTemplate.id == 2">
+    <mat-label>Organization</mat-label>
+    <input matInput [(ngModel)]="organization" />
+  </mat-form-field>
+
+  <mat-form-field class="field-full-width">
+    <mat-label>Course Name</mat-label>
+    <input matInput [(ngModel)]="courseName" />
+  </mat-form-field>
+
+  <mat-form-field class="field-full-width">
+    <mat-label>Choose Issued Date</mat-label>
+    <input matInput [matDatepicker]="issuedDatePicker" [value]="issuedDate" (dateChange)="onChangeIssuedDate($event)"/>
+    <mat-datepicker-toggle matSuffix [for]="issuedDatePicker"></mat-datepicker-toggle>
+    <mat-datepicker #issuedDatePicker></mat-datepicker>
+  </mat-form-field>
+
+  <mat-form-field class="field-full-width">
+    <mat-label>Choose Expiry Date</mat-label>
+    <input matInput [matDatepicker]="expiryDatePicker" [value]="expiryDate" (dateChange)="onChangeExpiryDate($event)"/>
+    <mat-datepicker-toggle matSuffix [for]="expiryDatePicker"></mat-datepicker-toggle>
+    <mat-datepicker #expiryDatePicker></mat-datepicker>
+  </mat-form-field>
+</div>
+
+<div mat-dialog-actions>
+<button mat-raised-button color="primary" (click)="onConfirm()">{{ confirm }}</button>
+<button mat-button (click)="onDismiss()">{{ dismiss }}</button>
+</div>

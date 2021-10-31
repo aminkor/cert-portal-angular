@@ -31,7 +31,7 @@ import { HomeComponent } from './home/home.component';
 import { UserListComponent } from './admin/master-data/user-list/user-list.component';
 import {AdminComponent} from './admin/admin.component';
 import {MatTabsModule} from '@angular/material/tabs';
-import {MatRippleModule} from '@angular/material/core';
+import {MatNativeDateModule, MatRippleModule} from '@angular/material/core';
 import {MatProgressSpinnerModule, MatSpinner} from '@angular/material/progress-spinner';
 import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 import { AddUserDialogComponent } from './admin/master-data/user-list/add-user-dialog/add-user-dialog.component';
@@ -57,6 +57,9 @@ import { AssignCertStudentComponent } from './assign-cert-student/assign-cert-st
 import { InstructorStudentsComponent } from './instructor-students/instructor-students.component';
 import { InstructorCertificatesComponent } from './instructor-certificates/instructor-certificates.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { GenerateCertificateDialogComponent } from './admin/master-data/certificate-list/generate-certificate-dialog/generate-certificate-dialog.component';
+import {MatRadioModule} from '@angular/material/radio';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 
 @NgModule({
@@ -84,7 +87,8 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
     AssignCertStudentComponent,
     InstructorStudentsComponent,
     InstructorCertificatesComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    GenerateCertificateDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -114,7 +118,11 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
     MatRippleModule,
     MatProgressSpinnerModule,
     MatDialogModule,
-    MatChipsModule
+    MatChipsModule,
+    MatRadioModule,
+    MatDatepickerModule,
+    MatNativeDateModule
+
   ],
   providers: [
     HttpClient,
@@ -122,6 +130,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
     MatDialog,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    MatDatepickerModule
   ],
   bootstrap: [AppComponent]
 })

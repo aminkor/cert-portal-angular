@@ -138,4 +138,8 @@ export class CertificateService {
           return x;
       }));
   }
+
+  generate(model) {
+    return this.http.post(`${environment.apiUrl}/Certificates/GenerateCert`, model);
+  }
 }

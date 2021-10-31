@@ -16,6 +16,10 @@ import {
 } from '../../../assign-cert-institution/assign-cert-institution.component';
 import {AssignCertStudentComponent, AssignCertStudentModel} from '../../../assign-cert-student/assign-cert-student.component';
 import { Location } from '@angular/common'
+import {
+  GenerateCertificateDialogComponent,
+  GenerateCertificateDialogModel
+} from './generate-certificate-dialog/generate-certificate-dialog.component';
 
 @Component({
   selector: 'app-certificate-list',
@@ -388,5 +392,55 @@ export class CertificateListComponent implements OnInit {
 
   close() {
     this.location.back();
+  }
+
+  generateFromTemplate() {
+    let title = `Generate Certificate`;
+    if (this.byInstitution) {
+      title = `Generate Certificate for ${this.selectedInstitution.name}`
+    }
+    const
+      dialogData = new GenerateCertificateDialogModel(title,{
+        byInstitution: this.byInstitution,
+        selectedInstitution: this.selectedInstitution
+      }),
+      dialogRef = this.dialog.open(GenerateCertificateDialogComponent, {
+        maxWidth: '500px',
+        width: '500px',
+        data: dialogData,
+        disableClose: true
+      })
+
+    dialogRef.afterClosed().subscribe(dialogResult => {
+      if (dialogResult.submit) {
+        delete dialogResult.submit
+        // TODO will change roles to actual array of roles id
+        // dialogResult.roles = []
+
+        this.certificateService.generate(dialogResult).subscribe(
+          data => {
+            this.toastr.success('Certificates generated', '', {
+              closeButton: true,
+              progressBar: true
+            })
+
+
+            this.onSearch(this.byInstitution);
+
+
+          },
+          error => {
+            this.toastr.error(`${error}`, 'Failed to generate', {
+              closeButton: true,
+              progressBar: true,
+              extendedTimeOut: 5000
+            })
+          },
+          () => {
+          }
+        )
+      }
+
+    })
   }
 }
