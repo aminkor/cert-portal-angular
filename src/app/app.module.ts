@@ -60,6 +60,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { GenerateCertificateDialogComponent } from './admin/master-data/certificate-list/generate-certificate-dialog/generate-certificate-dialog.component';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatDatepickerModule} from '@angular/material/datepicker';
+import {NgxMatSelectSearchModule} from 'ngx-mat-select-search';
 
 
 @NgModule({
@@ -121,7 +122,9 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
     MatChipsModule,
     MatRadioModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    NgxMatSelectSearchModule
+
 
   ],
   providers: [

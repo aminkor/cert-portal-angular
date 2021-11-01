@@ -41,6 +41,18 @@
     </mat-select>
   </mat-form-field>
 
+  <mat-form-field appearance="fill" class="field-full-width" *ngIf="selectedAssignment == 'Students Selection'">
+    <mat-select [formControl]="bankMultiCtrl" placeholder="Students" [multiple]="true" #multiSelect>
+      <mat-option>
+        <ngx-mat-select-search [formControl]="bankMultiFilterCtrl"  placeholderLabel="Search Student"
+                               noEntriesFoundLabel="'No Matching Student Found'"></ngx-mat-select-search>
+      </mat-option>
+      <mat-option *ngFor="let bank of filteredBanksMulti | async" [value]="bank">
+        {{bank.firstName + " " + bank.lastName}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
   <mat-form-field class="field-full-width" *ngIf="selectedTemplate && selectedTemplate.id == 2">
     <mat-label>Organization</mat-label>
     <input matInput [(ngModel)]="organization" />

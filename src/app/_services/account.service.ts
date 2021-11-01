@@ -115,4 +115,9 @@ export class AccountService {
   getInstructorStudents(instructorId)  {
     return this.http.get<Student []>(`${environment.apiUrl}/accounts/instructors/${instructorId}`);
   }
+
+  getAllStudents() {
+    return this.http.get<User[]>(`${environment.apiUrl}/accounts?filter=student`);
+
+  }
 }
