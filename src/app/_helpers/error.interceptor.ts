@@ -16,14 +16,33 @@ export class ErrorInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(request).pipe(catchError(err => {
       if ([401, 403].includes(err.status) && this.accountService.userValue) {
-        // auto logout if 401 or 403 response returned from api
+        // auto logout if token expired
+        this.accountService.user.subscribe(
+          (usr) => {
+            if (usr) {
+              if (this.tokenExpired(usr.jwtToken)) {
+                this.accountService.logout();
+
+              }
+            }
+            else {
+
+            }
+          }
+        );
+
+        // else navigate to front page
         this.router.navigate(['/'])
-        // this.accountService.logout();
       }
 
       const error = err.error?.message || err.statusText;
       console.error(err);
       return throwError(error);
     }))
+  }
+
+  private tokenExpired(token: string) {
+    const expiry = (JSON.parse(atob(token.split('.')[1]))).exp;
+    return (Math.floor((new Date).getTime() / 1000)) >= expiry;
   }
 }

@@ -20,6 +20,7 @@ import {
   GenerateCertificateDialogComponent,
   GenerateCertificateDialogModel
 } from './generate-certificate-dialog/generate-certificate-dialog.component';
+import { ViewPdfComponent, ViewPdfModel } from 'src/app/view-pdf/view-pdf.component';
 
 @Component({
   selector: 'app-certificate-list',
@@ -32,6 +33,7 @@ export class CertificateListComponent implements OnInit {
     { def: 'name', hide: false },
     { def: 'description', hide: false },
     { def: 'url', hide: false },
+    { def: 'view', hide: false },
     { def: 'issuedBy', hide: false },
     { def: 'assignedTo', hide: false },
     { def: 'created', hide: false },
@@ -441,6 +443,17 @@ export class CertificateListComponent implements OnInit {
         )
       }
 
+    })
+  }
+
+  viewPdf(url) {
+    const title = `Assign Student`,
+    dialogData = new ViewPdfModel(url),
+    dialogRef = this.dialog.open(ViewPdfComponent, {
+      maxWidth: '500px',
+      width: '500px',
+      data: dialogData,
+      disableClose: false
     })
   }
 }

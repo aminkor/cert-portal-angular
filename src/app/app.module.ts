@@ -61,6 +61,8 @@ import { GenerateCertificateDialogComponent } from './admin/master-data/certific
 import {MatRadioModule} from '@angular/material/radio';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {NgxMatSelectSearchModule} from 'ngx-mat-select-search';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
+import { ViewPdfComponent } from './view-pdf/view-pdf.component';
 
 
 @NgModule({
@@ -89,7 +91,8 @@ import {NgxMatSelectSearchModule} from 'ngx-mat-select-search';
     InstructorStudentsComponent,
     InstructorCertificatesComponent,
     UserProfileComponent,
-    GenerateCertificateDialogComponent
+    GenerateCertificateDialogComponent,
+    ViewPdfComponent
   ],
   imports: [
     BrowserModule,
@@ -123,8 +126,8 @@ import {NgxMatSelectSearchModule} from 'ngx-mat-select-search';
     MatRadioModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    NgxMatSelectSearchModule
-
+    NgxMatSelectSearchModule,
+    PdfViewerModule
 
   ],
   providers: [

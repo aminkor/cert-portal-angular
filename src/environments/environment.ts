@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://cportal.ddns.net:4445',
+  apiUrl: 'http://localhost:5000',
 
 };
 
