@@ -51,3 +51,14 @@
     }
   }
 }
+
+.profile-picture {
+  border-radius: 50%;
+  height: 25vh;
+
+}
+
+.profile-detail-1 > ::ng-deep figure {
+  justify-content: flex-start !important;
+}
+

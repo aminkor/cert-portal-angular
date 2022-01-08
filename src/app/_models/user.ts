@@ -7,4 +7,7 @@ export class User {
   jwtToken: string;
   email: any;
   userRole;
+  address: any;
+  contactNo: any;
+
 }

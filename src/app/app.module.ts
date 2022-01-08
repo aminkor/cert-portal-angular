@@ -63,6 +63,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {NgxMatSelectSearchModule} from 'ngx-mat-select-search';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { ViewPdfComponent } from './view-pdf/view-pdf.component';
+import { BreadcrumbService } from './_services';
 
 
 @NgModule({
@@ -136,7 +137,8 @@ import { ViewPdfComponent } from './view-pdf/view-pdf.component';
     MatDialog,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-    MatDatepickerModule
+    MatDatepickerModule,
+    BreadcrumbService
   ],
   bootstrap: [AppComponent]
 })

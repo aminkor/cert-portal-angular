@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {User} from '../_models';
-import {AccountService} from '../_services';
+import {AccountService, BreadcrumbService} from '../_services';
 import {AddUserDialogComponent, AddUserDialogModel} from '../admin/master-data/user-list/add-user-dialog/add-user-dialog.component';
 import {MatDialog} from '@angular/material/dialog';
 import {ToastrService} from 'ngx-toastr';
@@ -22,6 +22,7 @@ export class UserProfileComponent implements OnInit {
     private accountService: AccountService,
     private dialog: MatDialog,
     private toastr: ToastrService,
+    private breadcrumbService: BreadcrumbService
 
 
   ) {
@@ -40,6 +41,8 @@ export class UserProfileComponent implements OnInit {
         }
       }
     );
+    this.breadcrumbService.changeRootPage('Profile');
+
   }
 
   ngOnInit(): void {
@@ -60,6 +63,8 @@ export class UserProfileComponent implements OnInit {
       dialogRef = this.dialog.open(AddUserDialogComponent, {
         maxWidth: '500px',
         width: '500px',
+        maxHeight: '500px',
+        height: '500px',
         data: dialogData,
         disableClose: true
       })

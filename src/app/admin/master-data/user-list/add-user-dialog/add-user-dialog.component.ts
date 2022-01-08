@@ -18,6 +18,8 @@ export class AddUserDialogComponent implements OnInit {
   firstName: string;
   lastName: string;
   email: string;
+  address: string;
+  contactNo: string;
   password: string;
   confirmPassword: string;
   userId;
@@ -47,6 +49,8 @@ export class AddUserDialogComponent implements OnInit {
     this.firstName = data.item.firstName;
     this.lastName = data.item.lastName;
     this.email = data.item.email;
+    this.address = data.item.address;
+    this.contactNo = data.item.contactNo;
     this.userId = data.item.id;
     this.userRole = data.item.userRole;
     this.origin = data.origin;
@@ -103,6 +107,8 @@ export class AddUserDialogComponent implements OnInit {
         firstName: this.firstName,
         lastName: this.lastName,
         email: this.email,
+        address: this.address,
+        contactNo: this.contactNo,
         password: this.password,
         confirmPassword: this.confirmPassword,
         acceptTerms: true,

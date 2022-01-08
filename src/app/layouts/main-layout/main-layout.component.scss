@@ -11,86 +11,80 @@ $secondary: rgba(104, 70, 139, 1);
 
 $mobileNavHeight: 65px;
 
-.sidenav-container {
-  height: 100%;
-  .sidenav {
-    width: 200px;
-    margin: 0 auto;
-    background-color: $primary;
-    text-align: center;
-    padding-bottom: 1.5em;
-    color: white;
-    font-weight: bold;
-    user-select: none;
-    @include for-tablet-below {
-      width: 100%;
-      padding: 0;
-      pointer-events: none;
-      background-color: transparent;
+.main {
+  background-color: #f9f9f9;
+  overflow-x: hidden;
+  @include for-tablet-below {
+    margin-left: 0 !important;
+  }
+  .toolbar {
+    background-color: white;
+    color: #aaaaaa;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 99999;
+    border-bottom: 1px solid #eee;
+    .toolbar-title {
+      font-weight: bold;
+      color: $primary;
     }
-    .title {
-      font-size: 1.3em;
-      margin-bottom: 2em;
-      height: 64px;
-      max-height: 64px;
+    .toolbar-right {
       display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: $secondary;
-      pointer-events: none;
-      picture {
-        max-height: 64px;
-      }
-      @include for-tablet-below {
-        display: none;
-      }
-    }
-    nav {
-      display: flex;
-      flex-flow: column;
-      justify-content: space-between;
-      padding: 0 1em;
-      height: calc(100vh - 2em - 64px - 1.5em - 2em);
-      @include for-tablet-below {
-        flex-flow: row;
-        height: $mobileNavHeight;
-        position: sticky;
-        top: 100%;
-        background: $secondary;
-        pointer-events: all;
-        width: 100vw;
-        padding: 0;
-        z-index: 1;
-        .nav-wrapper {
-          &:first-child {
-            display: flex;
-            flex-flow: row;
-            width: 100%;
-            align-items: center;
-            justify-content: space-around;
+      .toolkit-wrapper {
+        background: #f2f2f2;
+        border-radius: 50%;
+        width: 2em;
+        height: 2em;
+        cursor: pointer;
+        user-select: none;
+        &:not(:last-child) {
+          margin-right: 0.5em;
+        }
+        &:hover {
+          background: #dddddd;
+        }
+        &.icon {
+          display: table;
+          text-align: center;
+          mat-icon {
+            vertical-align: middle;
+            color: rgba(103, 58, 183, 1);
           }
-          &:last-child {
-            display: none;
+        }
+        &.text {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: rgba(103, 58, 183, 1);
+          .initial {
+            font-size: 0.75em;
+            color: white;
           }
         }
       }
+    }
+    .toolbar-username {
+      display: flex;
+      align-items: center;
+      color: black;
+      font-size: medium;
+    }
+  }
+  .toolbar-second-row {
+    background-color: white;
+    .nav-wrapper {
       a {
         padding: 0.8em 0.8em;
-        font-size: 0.85em;
-        color: white;
+        font-size: 1.3em;
+        color: black;
         text-decoration: none;
-        display: flex;
         align-items: center;
-        @include for-tablet-below {
-          flex-flow: column;
-          flex: 1;
-          &:nth-child(3) {
-            display: none;
-          }
-        }
         &:hover,
         &.active {
-          background: $secondary;
+          background: #f9f9f9;
         }
         .mat-icon {
           margin-right: 10px;
@@ -101,73 +95,28 @@ $mobileNavHeight: 65px;
         &.router-parent {
           cursor: pointer;
         }
+        
       }
     }
   }
-  .main {
-    background-color: #f9f9f9;
-    overflow-x: hidden;
+  .toolbar-third-row {
+    background-color: white;
+    .nav-wrapper {
+      .root-page-text {
+        margin-left: 15px;
+      }
+    }
+  }
+  .wrapper {
+    padding: 1em 2em;
     @include for-tablet-below {
-      margin-left: 0 !important;
-    }
-    .toolbar {
-      background-color: white;
-      color: #aaaaaa;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      position: sticky;
-      top: 0;
-      z-index: 99999;
-      border-bottom: 1px solid #eee;
-      .toolbar-title {
-        font-weight: bold;
-        color: $primary;
-      }
-      .toolbar-right {
-        display: flex;
-        .toolkit-wrapper {
-          background: #f2f2f2;
-          border-radius: 50%;
-          width: 2em;
-          height: 2em;
-          cursor: pointer;
-          user-select: none;
-          &:not(:last-child) {
-            margin-right: 0.5em;
-          }
-          &:hover {
-            background: #dddddd;
-          }
-          &.icon {
-            display: table;
-            text-align: center;
-            mat-icon {
-              vertical-align: middle;
-              color: rgba(103, 58, 183, 1);
-            }
-          }
-          &.text {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(103, 58, 183, 1);
-            .initial {
-              font-size: 0.75em;
-              color: white;
-            }
-          }
-        }
-      }
-    }
-    .wrapper {
-      padding: 1em 2em;
-      @include for-tablet-below {
-        padding: 1em;
-        padding-bottom: calc(1em + #{$mobileNavHeight});
-      }
+      padding: 1em;
+      padding-bottom: calc(1em + #{$mobileNavHeight});
     }
   }
+ 
+
+  
 }
 
 .loading-profile {
@@ -179,4 +128,9 @@ $mobileNavHeight: 65px;
   margin: 0 auto;
   user-select: none;
   pointer-events: none;
+}
+
+button.mat-menu-item { 
+  outline:none; 
+  font-size: 1.0em;
 }

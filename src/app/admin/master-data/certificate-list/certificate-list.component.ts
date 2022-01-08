@@ -7,7 +7,7 @@ import {ToastrService} from 'ngx-toastr';
 import {CertificateService} from '../../../_services/certificate.service';
 import {AddCertificateDialogComponent, AddCertificateDialogModel} from './add-certificate-dialog/add-certificate-dialog.component';
 import {DomSanitizer} from '@angular/platform-browser';
-import {AccountService, InstitutionService} from '../../../_services';
+import {AccountService, BreadcrumbService, InstitutionService} from '../../../_services';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Certificate, Institution} from '../../../_models';
 import {
@@ -61,7 +61,9 @@ export class CertificateListComponent implements OnInit {
     private router: Router,
     private institutionService: InstitutionService,
     private location: Location,
-    private accountService: AccountService
+    private accountService: AccountService,
+    private breadcrumbService: BreadcrumbService
+
   ) {
 
     this.accountService.user.subscribe(
@@ -75,6 +77,9 @@ export class CertificateListComponent implements OnInit {
         }
       }
     );
+
+    this.breadcrumbService.changeRootPage('Certificates');
+
 
   }
 

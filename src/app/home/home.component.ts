@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {AccountService} from '../_services';
+import {AccountService, BreadcrumbService} from '../_services';
 import {User} from '../_models';
 
 @Component({
@@ -12,7 +12,9 @@ export class HomeComponent implements OnInit {
   authenticatedUser: User;
   userFullName;
   constructor(
-    private accountService: AccountService
+    private accountService: AccountService,
+    private breadcrumbService: BreadcrumbService
+
   ) {
     this.accountService.user.subscribe(
       (usr) => {
@@ -26,6 +28,7 @@ export class HomeComponent implements OnInit {
         }
       }
     );
+    this.breadcrumbService.changeRootPage('Home');
   }
 
   ngOnInit(): void {

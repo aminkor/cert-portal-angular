@@ -5,7 +5,7 @@ import {MatSort} from '@angular/material/sort';
 import {MatDialog} from '@angular/material/dialog';
 import {ToastrService} from 'ngx-toastr';
 import {AddInstitutionDialogComponent, AddInstitutionDialogModel} from './add-institution-dialog/add-institution-dialog.component';
-import {InstitutionService} from '../../../_services';
+import {BreadcrumbService, InstitutionService} from '../../../_services';
 import {Router} from '@angular/router';
 
 @Component({
@@ -39,8 +39,13 @@ export class InstitutionListComponent implements OnInit {
     private institutionService: InstitutionService,
     private dialog: MatDialog,
     private toastr: ToastrService,
-    private router: Router
-  ) { }
+    private router: Router,
+    private breadcrumbService: BreadcrumbService
+
+  ) { 
+    this.breadcrumbService.changeRootPage('Institution List');
+
+  }
 
   ngOnInit(): void {
     this.onSearch()

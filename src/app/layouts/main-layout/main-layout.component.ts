@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {User} from '../../_models';
 import {ActivatedRoute, Router} from '@angular/router';
-import {AccountService} from '../../_services';
+import {AccountService, BreadcrumbService} from '../../_services';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-main-layout',
@@ -18,10 +19,14 @@ export class MainLayoutComponent {
   authenticatedUser: User;
   showChild = false
   userRole: any;
+  currentRootPageTitle:string;
+  subscription: Subscription;
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private accountService: AccountService) {
+    private accountService: AccountService,
+    private breadcrumbService: BreadcrumbService
+    ) {
     this.accountService.user.subscribe(
       (usr) => {
         if (usr) {
@@ -38,6 +43,14 @@ export class MainLayoutComponent {
       }
     );
 
+  }
+
+  ngOnInit() {
+    this.subscription = this.breadcrumbService.currentRootPageTitle.subscribe(rootPageTitle => this.currentRootPageTitle = rootPageTitle)
+  }
+  
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
   getInitials(name) {

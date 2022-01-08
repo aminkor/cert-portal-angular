@@ -1,4 +1,4 @@
-<div class="main-div">
+<!-- <div class="main-div">
   <mat-card class="card">
     <mat-card-header>
       <div mat-card-avatar>
@@ -18,4 +18,52 @@
       Update
     </button>
   </mat-card>
-</div>
+</div> -->
+
+
+<mat-grid-list cols="4" rowHeight="300px">
+  <mat-grid-tile [colspan]="1">
+    <img src="assets/images/img_avatar.png" class="profile-picture" alt="Avatar">
+  </mat-grid-tile>
+  <mat-grid-tile [colspan]="3" class="profile-detail-1">
+  
+    <mat-list >
+      <mat-list-item role="listitem">     
+         <h1>{{authenticatedUser.firstName}} {{authenticatedUser.lastName}}</h1>
+      </mat-list-item>
+
+      <mat-list-item role="listitem">
+        <h3 style="color: blue;">{{authenticatedUser.email}}</h3>
+      </mat-list-item>
+
+      <mat-list-item role="listitem">
+        <h3>{{authenticatedUser.userRole}}</h3>
+      </mat-list-item>
+    </mat-list>
+   </mat-grid-tile>
+
+   <mat-grid-tile [colspan]="1" >
+    <button mat-raised-button color="primary" (click)="editUser()">
+      Update
+    </button>
+  </mat-grid-tile>
+
+  <mat-grid-tile [colspan]="3" class="profile-detail-1">
+
+    <mat-list >
+      <mat-list-item role="listitem">     
+        <h4><b style="color: gray;"> CONTACT DETAILS</b></h4>
+
+     </mat-list-item>
+      <mat-list-item role="listitem">     
+         <h3>{{authenticatedUser.address}}</h3>
+      </mat-list-item>
+
+      <mat-list-item role="listitem">
+        <h3>{{authenticatedUser.contactNo}}</h3>
+      </mat-list-item>
+
+   
+    </mat-list>
+  </mat-grid-tile>
+</mat-grid-list>

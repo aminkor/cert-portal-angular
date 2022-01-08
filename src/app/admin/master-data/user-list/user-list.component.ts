@@ -4,7 +4,7 @@ import {MatSort} from '@angular/material/sort';
 import {MatDialog} from '@angular/material/dialog';
 import {ToastrService} from 'ngx-toastr';
 import {MatPaginator} from '@angular/material/paginator';
-import {AccountService} from '../../../_services';
+import {AccountService, BreadcrumbService} from '../../../_services';
 import {AddUserDialogComponent, AddUserDialogModel} from './add-user-dialog/add-user-dialog.component';
 import {User} from '../../../_models';
 import {EditInstitutionsDialogComponent, EditInstitutionsDialogModel} from './edit-institutions-dialog/edit-institutions-dialog.component';
@@ -38,7 +38,10 @@ export class UserListComponent implements OnInit {
     private accountService: AccountService,
     private dialog: MatDialog,
     private toastr: ToastrService,
+    private breadcrumbService: BreadcrumbService
+
    ) {
+    this.breadcrumbService.changeRootPage('User List');
 
   }
 
