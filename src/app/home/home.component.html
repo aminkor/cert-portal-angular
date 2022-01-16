@@ -1,0 +1,16 @@
+<h4><b style="color: gray;"> User Certificates</b></h4>
+<mat-grid-list cols="3" rowHeight="500px">
+    <mat-grid-tile
+        *ngFor="let cert of userCertificates"
+       >
+       <pdf-viewer [src]="cert.url"
+       [render-text]="true"
+       [original-size]="false"
+       [show-all]="false"
+       [page]="1"
+       [show-borders]="true"
+       (click)="viewPdf(cert.url)"
+       style="height: 400px;width: 500px;"
+></pdf-viewer>
+    </mat-grid-tile>
+  </mat-grid-list>

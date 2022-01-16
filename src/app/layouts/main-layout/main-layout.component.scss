@@ -134,3 +134,18 @@ button.mat-menu-item {
   outline:none; 
   font-size: 1.0em;
 }
+
+.profile-picture {
+  border-radius: 50%;
+  height: 5vh;
+
+}
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  color: black;
+  text-align: center;
+}

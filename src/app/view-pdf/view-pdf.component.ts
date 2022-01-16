@@ -12,7 +12,7 @@ export class ViewPdfComponent implements OnInit {
     public dialogRef: MatDialogRef<ViewPdfComponent>,
     @Inject(MAT_DIALOG_DATA) public data: ViewPdfModel,
   ) {
-    // this.pdfSrc = data.pdfUrl
+    this.pdfSrc = data.pdfUrl
     // TODO something wrong with cors, need to configure, if using the above 
    }
 
