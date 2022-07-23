@@ -23,8 +23,8 @@ export class UserCertificatesComponent implements OnInit {
     { def: 'name', hide: false },
     { def: 'description', hide: false },
     { def: 'url', hide: false },
-    { def: 'created', hide: false },
-    { def: 'updated', hide: false },
+    { def: 'created', hide: true },
+    { def: 'updated', hide: true },
   ]
 
   isLoadingResults = false

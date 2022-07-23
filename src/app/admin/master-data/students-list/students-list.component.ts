@@ -28,8 +28,8 @@ export class StudentsListComponent implements OnInit {
   columnDefinitions = [
     { def: 'id', hide: false },
     { def: 'name', hide: false },
-    { def: 'created', hide: false },
-    { def: 'updated', hide: false },
+    { def: 'created', hide: true },
+    { def: 'updated', hide: true },
     { def: 'remove', hide: false },
 
   ]

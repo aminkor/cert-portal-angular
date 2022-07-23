@@ -23,8 +23,8 @@ export class InstitutionListComponent implements OnInit {
     { def: 'studentsCounts', hide: false },
     { def: 'certificates', hide: false },
     { def: 'certificatesCounts', hide: false },
-    { def: 'created', hide: false },
-    { def: 'updated', hide: false },
+    { def: 'created', hide: true },
+    { def: 'updated', hide: true },
   ]
 
   isLoadingResults = false
@@ -42,7 +42,7 @@ export class InstitutionListComponent implements OnInit {
     private router: Router,
     private breadcrumbService: BreadcrumbService
 
-  ) { 
+  ) {
     this.breadcrumbService.changeRootPage('Institution List');
 
   }

@@ -36,8 +36,8 @@ export class CertificateListComponent implements OnInit {
     { def: 'view', hide: false },
     { def: 'issuedBy', hide: false },
     { def: 'assignedTo', hide: false },
-    { def: 'created', hide: false },
-    { def: 'updated', hide: false },
+    { def: 'created', hide: true },
+    { def: 'updated', hide: true },
   ]
 
   isLoadingResults = false

@@ -26,8 +26,8 @@ export class InstructorInstitutionsComponent implements OnInit {
     { def: 'studentsCounts', hide: false },
     { def: 'certificates', hide: false },
     { def: 'certificatesCounts', hide: false },
-    { def: 'created', hide: false },
-    { def: 'updated', hide: false },
+    { def: 'created', hide: true },
+    { def: 'updated', hide: true },
 
   ]
 

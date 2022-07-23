@@ -30,8 +30,8 @@ export class InstructorCertificatesComponent implements OnInit {
     { def: 'url', hide: false },
     { def: 'issuedBy', hide: false },
     { def: 'assignedTo', hide: false },
-    { def: 'created', hide: false },
-    { def: 'updated', hide: false },
+    { def: 'created', hide: true },
+    { def: 'updated', hide: true },
   ]
 
   isLoadingResults = false

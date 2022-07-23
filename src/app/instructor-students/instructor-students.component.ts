@@ -25,8 +25,8 @@ export class InstructorStudentsComponent implements OnInit {
     { def: 'email', hide: false },
     { def: 'userRole', hide: false },
     { def: 'isVerified', hide: false },
-    { def: 'created', hide: false },
-    { def: 'updated', hide: false },
+    { def: 'created', hide: true },
+    { def: 'updated', hide: true },
     { def: 'registeredTo', hide: false}
   ]
 

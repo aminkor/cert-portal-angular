@@ -22,8 +22,8 @@ export class UserListComponent implements OnInit {
     { def: 'email', hide: false },
     { def: 'userRole', hide: false },
     { def: 'isVerified', hide: false },
-    { def: 'created', hide: false },
-    { def: 'updated', hide: false },
+    { def: 'created', hide: true },
+    { def: 'updated', hide: true },
   ]
 
   isLoadingResults = false
